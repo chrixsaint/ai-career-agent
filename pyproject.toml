@@ -1,0 +1,12 @@
+[project]
+name = "ai-career-agent"
+version = "0.1.0"
+authors = [
+    { name = "christian ochenehi peter", email = "christianochenehipeter@gmail.com" }
+]
+requires-python = ">=3.10"
+dependencies = []
+
+[build-system]
+requires = ["uv_build>=0.12.1,<0.13.0"]
+build-backend = "uv_build"
