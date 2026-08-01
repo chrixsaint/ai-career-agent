@@ -4,6 +4,8 @@
 
 **Phase 1 – Foundation**
 
+---
+
 ## Completed
 
 - ✅ Repository initialized
@@ -16,18 +18,32 @@
 - ✅ Python project initialized with uv
 - ✅ uv configured for application mode
 - ✅ FastAPI app package initialized (`app/__init__.py`)
+- ✅ FastAPI backend framework installed
+- ✅ FastAPI installation verified
 - ✅ uv.lock generated successfully
 
-## In Progress
+---
 
-- ⏳ Installing FastAPI dependencies
+## Current Task
+
+⏳ FastAPI project setup
+
+---
 
 ## Next Milestone
 
-- Install FastAPI
-- Verify development server
-- Build application skeleton
+- Create the FastAPI application skeleton
+- Verify the FastAPI development server
+- Implement the first health check endpoint
+
+---
+
+## Last Completed Milestone
+
+Development Environment
+
+---
 
 ## Last Commit
 
-build: configure uv for application project
+build: add fastapi backend framework
