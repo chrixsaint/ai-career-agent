@@ -53,7 +53,9 @@ Complete the engineering foundation and begin implementing the FastAPI applicati
 
 # Current Task
 
-Implement the initial FastAPI application skeleton and the first API endpoint.
+Current Task
+
+Implement the health check endpoint.
 
 ---
 
