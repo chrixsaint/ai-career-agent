@@ -2,13 +2,7 @@
 
 ## High-Level Overview
 
-The AI Career Agent is composed of several independent modules.
-
-Each module performs one responsibility.
-
-```
-
-```
+The AI Career Agent is composed of independent modules, each with a single responsibility.
 
              +----------------------+
              |    Job Sources       |
@@ -40,8 +34,6 @@ Each module performs one responsibility.
                         |
                   User Dashboard
 
-```
-
 ---
 
 ## Modules
@@ -68,18 +60,7 @@ Collects jobs from all sources.
 
 Converts every job into one standard format.
 
-Example
-
-```
-
-Company
-Title
-Location
-Remote
-URL
-Posted Date
-
-```
+Normalized fields include company, title, location, remote status, source URL, and posted date.
 
 ---
 
@@ -132,14 +113,3 @@ Displays recommended opportunities.
 - Easy to extend
 - Prefer free APIs
 - Use web scraping where appropriate and permitted
-
----
-
-## Future Modules
-
-- Interview Preparation
-- Salary Analysis
-- Skill Gap Analysis
-- Learning Recommendations
-- Career Analytics
-```

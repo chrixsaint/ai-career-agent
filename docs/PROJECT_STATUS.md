@@ -4,6 +4,10 @@
 
 **Phase 1 – Foundation**
 
+## Current Milestone
+
+Implement first API endpoint
+
 ---
 
 ## Completed
@@ -21,12 +25,6 @@
 - ✅ FastAPI backend framework installed
 - ✅ FastAPI installation verified
 - ✅ uv.lock generated successfully
-
----
-
-## Current Task
-
-⏳ FastAPI project setup
 
 ---
 

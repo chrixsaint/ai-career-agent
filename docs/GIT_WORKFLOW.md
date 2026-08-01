@@ -109,12 +109,15 @@ Avoid vague messages such as:
 
 Before committing, verify that:
 
+- `git status` was run after staging to confirm exactly what will be committed.
 - The project builds successfully.
 - Tests pass (where applicable).
 - Documentation has been updated if required.
 - Code follows the Coding Standards.
 - No secrets or credentials are committed.
 - The commit represents one logical change.
+
+If `pyproject.toml` changes dependency configuration, update `uv.lock` in the same change set.
 
 Avoid committing unfinished work unless there is a specific reason.
 

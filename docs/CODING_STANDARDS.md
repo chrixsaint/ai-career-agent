@@ -2,78 +2,29 @@
 
 ## Purpose
 
-This document defines the coding standards and engineering principles for the AI Career Agent.
+This document defines implementation quality standards for Python, FastAPI, and pytest code in this repository.
 
-Its goal is to ensure the codebase remains consistent, maintainable, scalable, and easy to understand throughout the project's lifetime.
-
-These standards apply to all source code, tests, scripts, and documentation.
+These standards apply to application code and tests.
 
 ---
 
 # Core Principles
 
-The project follows these principles:
-
-- Readability over cleverness.
-- Simplicity over unnecessary complexity.
-- Consistency over personal preference.
-- Composition over duplication.
-- Small, focused modules.
-- Explicit is better than implicit.
-- Write code for humans first.
+- Readability over cleverness
+- Simplicity over unnecessary complexity
+- Consistency over personal preference
+- Small, focused modules
+- Explicit behavior over implicit behavior
 
 ---
 
-# Clean Code Principles
+# Python Standards
 
-The codebase should strive to:
-
-- Be easy to read.
-- Be easy to test.
-- Be easy to modify.
-- Minimize technical debt.
-- Avoid unnecessary abstractions.
-- Avoid premature optimization.
-
----
-
-# SOLID Principles
-
-Where appropriate, follow the SOLID principles:
-
-- Single Responsibility Principle (SRP)
-- Open/Closed Principle (OCP)
-- Liskov Substitution Principle (LSP)
-- Interface Segregation Principle (ISP)
-- Dependency Inversion Principle (DIP)
-
-These principles should guide architecture decisions rather than be applied mechanically.
-
----
-
-# DRY Principle
-
-Follow the Don't Repeat Yourself (DRY) principle.
-
-If logic is duplicated, prefer extracting reusable components instead of copying code.
-
----
-
-# KISS Principle
-
-Keep solutions as simple as possible.
-
-Do not introduce additional complexity unless it provides a clear long-term benefit.
-
----
-
-# YAGNI Principle
-
-"You Aren't Gonna Need It."
-
-Do not implement features based solely on future possibilities.
-
-Only build functionality required by the current roadmap unless there is a compelling architectural reason.
+- Use type hints for function and method signatures.
+- Use `snake_case` for modules, variables, and functions.
+- Keep functions focused on one responsibility.
+- Prefer standard library modules where practical.
+- Avoid broad `except Exception` handlers unless the boundary requires it.
 
 ---
 
@@ -122,6 +73,22 @@ Classes should:
 
 ---
 
+# FastAPI Standards
+
+- Define request and response schemas with Pydantic models.
+- Use `APIRouter` for route grouping instead of placing all routes in a single file.
+- Use FastAPI dependency injection (`Depends`) for shared services and request-scoped dependencies.
+- Declare `response_model` on endpoints when returning structured data.
+- Keep endpoint handlers thin; place business logic in service modules.
+
+## Async and Sync Guidance
+
+- Use `async def` for I/O-bound handlers and dependencies.
+- Use regular `def` for CPU-bound or purely synchronous logic.
+- Do not block the event loop with long-running synchronous I/O in async handlers.
+
+---
+
 # Error Handling
 
 Errors should:
@@ -130,6 +97,8 @@ Errors should:
 - Provide meaningful messages.
 - Avoid silent failures.
 - Avoid broad exception handling unless justified.
+
+- Define global exception handlers at the API boundary for predictable error responses.
 
 ---
 
@@ -148,22 +117,9 @@ Logs should provide useful context without exposing sensitive data.
 
 ---
 
-# Documentation
-
-Public modules, classes, and important functions should include documentation explaining:
-
-- purpose
-- inputs
-- outputs
-- important assumptions
-
-Code should not require excessive comments to be understood.
-
----
-
 # Testing
 
-New functionality should include appropriate tests.
+Use `pytest` for automated tests.
 
 Tests should be:
 
@@ -171,6 +127,12 @@ Tests should be:
 - deterministic
 - readable
 - maintainable
+
+FastAPI testing should:
+
+- Use `fastapi.testclient.TestClient` for API-level tests.
+- Cover success and failure cases for each endpoint.
+- Validate response status codes and response schemas.
 
 ---
 
@@ -185,18 +147,6 @@ Refactoring should improve:
 - modularity
 
 without changing external behavior.
-
----
-
-# Code Reviews
-
-Every change should be reviewed for:
-
-- readability
-- correctness
-- maintainability
-- simplicity
-- consistency with project standards
 
 ---
 

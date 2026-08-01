@@ -2,9 +2,7 @@
 
 ## Overview
 
-This roadmap outlines the major development phases of the AI Career Agent.
-
-Each phase builds upon the previous one, resulting in a fully functional AI-powered career assistant.
+This roadmap defines the planned implementation phases for the AI Career Agent.
 
 ---
 
@@ -20,9 +18,8 @@ Establish the project's technical foundation.
 - Development environment
 - FastAPI project setup
 - Database setup
-- Docker configuration
+- Initial testing setup
 - Initial documentation
-- CI/CD preparation
 
 ---
 
@@ -121,17 +118,3 @@ Deploy a reliable production-ready application.
 - Logging
 - Backups
 - Documentation review
-
----
-
-# Future Enhancements
-
-Potential future capabilities include:
-
-- Interview preparation
-- Salary analysis
-- Recruiter tracking
-- Networking assistant
-- Career analytics
-- Multi-user support
-- Mobile application

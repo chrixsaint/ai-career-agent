@@ -2,17 +2,17 @@
 
 ## Mission
 
-Build a personal AI career assistant that continuously searches for relevant career opportunities and helps me submit the highest-quality applications possible.
+Build a personal AI career assistant that continuously discovers relevant opportunities and helps produce higher-quality, user-controlled applications.
 
 ---
 
 ## Problem
 
-Searching for jobs manually every day is repetitive, time-consuming, and inefficient.
+Manual job searching is repetitive, time-consuming, and inconsistent.
 
-Job opportunities often receive hundreds of applications within hours of being published.
+Many roles receive large volumes of applications shortly after publication.
 
-I need a system that continuously discovers relevant jobs and helps me prepare customized applications quickly.
+The project needs a system that continuously discovers relevant jobs and accelerates customized application preparation.
 
 ---
 
@@ -29,88 +29,22 @@ The AI Career Agent should:
 
 ---
 
-## Career Profiles
+## Target Domain
 
-The system should support multiple career profiles.
-
-### Software Engineering
-
-Search for:
-
-- Backend Engineer
-- Python Developer
-- AI Engineer
-- Software Engineer
-- Graduate Programs
-- Internships
-
----
-
-### Biomedical Engineering
-
-Search for:
-
-- Biomedical Engineer
-- Medical Device Engineer
-- Validation Engineer
-- Clinical Engineer
-- Regulatory Affairs
-
----
-
-### Biochemistry
-
-Search for:
-
-- Research Scientist
-- Laboratory Scientist
-- QC Analyst
-- QA Analyst
-- Biotechnology Associate
-
----
-
-### Hybrid Careers
-
-Search for careers combining software and life sciences.
-
-Examples:
-
-- Bioinformatics
-- Healthcare AI
-- Biomedical Software
-- Medical Imaging AI
-
----
-
-## Daily Workflow
-
-Every day the system should:
-
-1. Collect jobs
-2. Remove duplicates
-3. Filter irrelevant jobs
-4. Rank remaining jobs
-5. Recommend 10–20 opportunities
-6. Tailor CV
-7. Generate Cover Letter
-8. Allow manual application
+The initial domain focuses on software engineering, biomedical engineering, biochemistry, and hybrid roles across those disciplines.
 
 ---
 
 ## Design Principles
 
-- Free first
-- Open source first
-- Modular
-- Scalable
-- AI-assisted
-- Easy to maintain
+- Open-source-first where practical
+- Cost-conscious implementation
+- Modular architecture
+- Maintainable system design
+- Human-in-the-loop application decisions
 
 ---
 
 ## Long-Term Vision
 
-The AI Career Agent should become my lifelong AI career assistant.
-
-It should understand my background, my skills, my goals, and continuously help me grow throughout my career.
+The AI Career Agent should evolve into a long-term career support system that adapts to changing goals, skills, and opportunities while preserving user control.

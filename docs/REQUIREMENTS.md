@@ -2,9 +2,7 @@
 
 ## Purpose
 
-This document defines the functional and non-functional requirements for the AI Career Agent.
-
-The requirements serve as the contract for the project. Every feature implemented should satisfy one or more of these requirements.
+This document defines the functional and non-functional requirements for the AI Career Agent. Every implemented feature should satisfy one or more requirements in this document.
 
 ---
 
@@ -54,7 +52,7 @@ The system shall rank opportunities by relevance.
 
 ### FR-010
 
-The system shall recommend approximately 10–20 high-quality opportunities per day.
+The system shall recommend a limited set of high-quality opportunities per day.
 
 ---
 
@@ -104,6 +102,10 @@ The system shall use AI to improve application quality.
 
 The system shall explain why a job is recommended.
 
+### FR-020
+
+The system shall expose a programmatic API for core workflows.
+
 ---
 
 # Non-Functional Requirements
@@ -135,3 +137,15 @@ The system should support adding new job sources with minimal code changes.
 ### NFR-007
 
 The user shall retain final control over every application submission.
+
+### NFR-008
+
+The codebase shall use Python type hints for public interfaces.
+
+### NFR-009
+
+API data contracts shall use Pydantic models.
+
+### NFR-010
+
+Automated tests shall be implemented with pytest.

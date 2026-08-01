@@ -1,83 +1,25 @@
 # AI Career Agent
 
-## Overview
+AI Career Agent is a personal AI-powered backend project for discovering relevant job opportunities and supporting higher-quality, user-controlled applications.
 
-AI Career Agent is a personal AI-powered career assistant that helps discover newly posted job opportunities, recommend the most relevant positions, and prepare tailored job applications.
-
-The system searches multiple job sources, aggregates opportunities into one place, and helps generate customized CVs and cover letters while keeping the application process under the user's control.
-
-The first version is designed for a single user and focuses on finding software engineering, biomedical engineering, and biochemistry opportunities.
-
----
-
-## Features
-
-- Discover newly posted jobs
-- Aggregate jobs from multiple sources
-- Daily personalized job recommendations
-- CV tailoring
-- Cover letter generation
-- Job ranking based on relevance
-- Manual application workflow
-- Modular AI architecture
-
----
-
-## Target Roles
-
-### Software Engineering
-
-- Internships
-- Graduate Programs
-- Entry-Level Software Engineer
-- Junior Backend Engineer
-- Python Developer
-- AI Engineer
-
-### Biomedical Engineering
-
-- Biomedical Engineer
-- Medical Device Engineer
-- Clinical Engineer
-- Medical Imaging Engineer
-
-### Biochemistry
-
-- Laboratory Scientist
-- Research Assistant
-- QC Analyst
-- Clinical Research Associate
-
-### Hybrid Careers
-
-- Bioinformatics Engineer
-- Medical AI Engineer
-- Biomedical Software Engineer
-- Healthcare Data Engineer
-
----
-
-## Preferred Locations
-
-- Bucharest, Romania
-- Remote (Worldwide)
-
----
-
-## Technology Stack
-
-> Work in Progress
-
----
+The repository is organized around a single source of truth: project decisions and standards are defined in `docs/`, implementation lives in `app/`, and external learning material lives in `knowledge/`.
 
 ## Documentation
 
-- PROJECT_VISION.md
-- ARCHITECTURE.md
-- Engineering Playbook
+- Project Vision: `docs/PROJECT_VISION.md`
+- Requirements: `docs/REQUIREMENTS.md`
+- Roadmap: `docs/ROADMAP.md`
+- Project Status: `docs/PROJECT_STATUS.md`
+- Architecture: `docs/ARCHITECTURE.md`
+- Technology Stack: `docs/technology-stack.md`
+- Coding Standards: `docs/CODING_STANDARDS.md`
+- Git Workflow: `docs/GIT_WORKFLOW.md`
+- Repository Standard: `docs/REPOSITORY_STANDARD.md`
+- AI Playbook: `docs/AI_PLAYBOOK.md`
+- AI Collaboration: `docs/AI_COLLABORATION.md`
 
----
+## Current State
 
-## Project Status
-
-🚧 Currently under active development.
+- Phase: Foundation
+- Backend entry point: `app/main.py`
+- Packaging and dependencies: `pyproject.toml`, `uv.lock`

@@ -1,6 +1,6 @@
 # AI Playbook
 
-> **Purpose:** This document defines the AI Engineering Operating System for this repository. It explains the role of each AI tool, when to use it, and how the tools work together throughout the development lifecycle.
+> **Purpose:** This document defines AI tool orchestration for this repository: which tool to use, when to use it, and what not to use it for.
 
 ---
 
@@ -61,6 +61,26 @@ Implementation assistance inside the development environment.
 
 ---
 
+# Claude Code
+
+**Primary Role**
+
+Repository-aware autonomous engineering in the local workspace.
+
+**Use For**
+
+- Multi-file implementation tasks
+- Repository-aware refactoring
+- Documentation updates tied to code changes
+- Test updates and verification workflows
+
+**Avoid**
+
+- Replacing official documentation as the authority
+- Introducing workflows not active in this project phase
+
+---
+
 # ChatGPT
 
 **Primary Role**
@@ -95,7 +115,7 @@ Typical workflow:
 1. Research with NotebookLM.
 2. Validate against official documentation.
 3. Design with ChatGPT.
-4. Implement with VS Code Copilot.
+4. Implement with VS Code Copilot or Claude Code.
 5. Verify and review before committing.
 
 ---

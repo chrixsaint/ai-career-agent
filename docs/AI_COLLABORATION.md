@@ -2,178 +2,49 @@
 
 ## Purpose
 
-This document defines how AI assistants (such as ChatGPT and NotebookLM) should support the development of the AI Career Agent.
+This document defines the human-AI collaboration workflow used in this repository.
 
-The goal is to ensure that AI-generated suggestions remain consistent with the project's architecture, coding standards, and long-term vision.
-
----
-
-# Primary Responsibilities
-
-AI should assist with:
-
-- Software design
-- Architecture discussions
-- Feature implementation
-- Bug investigation
-- Refactoring
-- Documentation
-- Testing
-- Code reviews
-- Performance improvements
-- Security recommendations
-
-AI should act as an engineering assistant, not as the decision maker.
-
-Final technical decisions remain with the developer.
+Its purpose is to ensure consistent execution from research to implementation while preserving developer ownership of decisions.
 
 ---
 
-# General Rules
+# Collaboration Workflow
 
-AI should:
+Use this workflow for documentation and implementation tasks:
 
-- Follow the project documentation before proposing solutions.
-- Preserve the existing architecture unless a change is justified.
-- Prefer extending existing components over creating duplicates.
-- Recommend simple solutions before complex ones.
-- Explain trade-offs when multiple approaches exist.
-- State assumptions when information is missing.
-- Avoid guessing project-specific details.
+1. Research with NotebookLM.
+2. Verify findings against official documentation.
+3. Design options with ChatGPT.
+4. Implement in the repository with Copilot or Claude Code.
+5. Review and verify before commit.
 
 ---
 
-# Code Generation Rules
+# Role Boundaries
 
-Generated code should:
+- NotebookLM: research and source retrieval
+- ChatGPT: engineering reasoning and design trade-offs
+- Copilot and Claude Code: repository-aware implementation
+- Developer: final decision authority and approval
 
-- Follow the Coding Standards document.
-- Be readable and maintainable.
-- Include appropriate type hints where applicable.
-- Avoid unnecessary abstractions.
-- Avoid dead code.
-- Avoid placeholder implementations unless explicitly requested.
-- Prefer small, focused modules.
-- Be production-quality whenever practical.
+AI assistants support decisions; they do not replace developer ownership.
 
 ---
 
-# Documentation Rules
+# Collaboration Rules
 
-When updating documentation, AI should:
-
-- Keep terminology consistent.
-- Avoid contradicting existing documents.
-- Update related documentation when necessary.
-- Explain significant architectural decisions.
-
----
-
-# Refactoring Rules
-
-When refactoring code, AI should:
-
-- Preserve external behavior.
-- Improve readability.
-- Reduce duplication.
-- Simplify complexity where possible.
-- Explain why the refactoring is beneficial.
+- Follow repository standards and existing architecture.
+- Avoid duplicate documentation and duplicate implementations.
+- State assumptions when context is missing.
+- Keep changes small, reviewable, and verifiable.
+- Update related documentation when implementation changes affect it.
 
 ---
 
-# Bug Investigation
+# Verification Before Commit
 
-When debugging, AI should:
+Before committing AI-assisted work:
 
-1. Explain the likely cause.
-2. Identify affected components.
-3. Suggest the smallest effective fix.
-4. Discuss potential side effects.
-5. Recommend tests to prevent regressions.
-
----
-
-# Code Reviews
-
-During reviews, AI should evaluate:
-
-- Correctness
-- Readability
-- Maintainability
-- Modularity
-- Error handling
-- Security
-- Performance (when relevant)
-- Testability
-- Consistency with project standards
-
-Feedback should be constructive and actionable.
-
----
-
-# Commit Assistance
-
-When preparing commits, AI should:
-
-- Suggest an appropriate commit type.
-- Write a concise commit message.
-- Summarize the logical change.
-- Identify documentation updates if needed.
-
----
-
-# Architectural Changes
-
-Before recommending architectural changes, AI should:
-
-- Explain the motivation.
-- Describe advantages and disadvantages.
-- Consider long-term maintainability.
-- Consider impact on existing components.
-- Recommend migration steps if applicable.
-
----
-
-# Testing Assistance
-
-AI should help:
-
-- Identify edge cases.
-- Suggest unit tests.
-- Suggest integration tests.
-- Improve test coverage.
-- Keep tests readable and deterministic.
-
----
-
-# Security Awareness
-
-AI should encourage:
-
-- Secure handling of secrets.
-- Input validation.
-- Principle of least privilege.
-- Protection of personal information.
-- Dependency awareness.
-- Safe error handling.
-
----
-
-# Communication Style
-
-Responses should be:
-
-- Clear
-- Structured
-- Technically accurate
-- Concise unless additional detail is requested
-
-When multiple solutions exist, AI should explain the trade-offs rather than presenting a single approach as universally correct.
-
----
-
-# Continuous Improvement
-
-As the project evolves, this guide should be updated to reflect new engineering practices, tools, and workflows.
-
-The objective is to build a long-term collaboration between the developer and AI assistants that produces maintainable, high-quality software.
+- Confirm the change matches the requested scope.
+- Confirm tests/validation steps were performed where applicable.
+- Confirm documentation remains consistent with the change.
