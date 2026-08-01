@@ -1,115 +1,267 @@
 # Architecture
 
-## High-Level Overview
+> **Purpose:** This document defines the high-level architecture of the AI Career Agent. It describes how the system is organized, how information flows through the application, and the responsibilities of each major architectural component.
 
-The AI Career Agent is composed of independent modules, each with a single responsibility.
+Implementation details belong in the source code.
 
-             +----------------------+
-             |    Job Sources       |
-             +----------+-----------+
-                        |
-        +---------------+----------------+
-        |                                |
-     APIs                         Web Scrapers
-        |                                |
-        +---------------+----------------+
-                        |
-                Job Aggregator
-                        |
-                Job Normalizer
-                        |
-              Duplicate Removal
-                        |
-                 Job Filter Engine
-                        |
-                 AI Ranking Engine
-                        |
-               Recommendation Engine
-                        |
-         +--------------+---------------+
-         |                              |
-     CV Tailoring               Cover Letter
-         |                              |
-         +--------------+---------------+
-                        |
-                  User Dashboard
+Technology selection belongs in `technology-stack.md`.
+
+Coding practices belong in `CODING_STANDARDS.md`.
+
+Project goals belong in `PROJECT_VISION.md`.
 
 ---
 
-## Modules
+# Architectural Goals
 
-### Job Sources
+The architecture is designed to be:
 
-Responsible for collecting jobs.
+- Modular
+- Maintainable
+- Extensible
+- Testable
+- AI-assisted
+- Easy to evolve
 
-Examples:
-
-- APIs
-- Company career websites
-- Job boards
-
----
-
-### Aggregator
-
-Collects jobs from all sources.
+Every architectural component should own a single responsibility.
 
 ---
 
-### Normalizer
+# Application Organization
 
-Converts every job into one standard format.
+The backend follows the official FastAPI recommendations for larger applications.
 
-Normalized fields include company, title, location, remote status, source URL, and posted date.
+The application is organized as a Python package rooted in `app/`.
 
----
+As the project grows, the application will be organized into dedicated modules for concerns such as:
 
-### Duplicate Detector
+- Routers
+- Schemas
+- Services
+- Dependencies
+- Configuration
 
-Removes duplicate listings.
+The `app/main.py` module serves as the application entry point.
 
----
+Its responsibilities are limited to:
 
-### Filter Engine
+- Creating the FastAPI application
+- Registering routers
+- Applying global configuration
+- Registering shared dependencies
+- Registering exception handlers
 
-Filters based on:
+Business logic should not be implemented in `main.py`.
 
-- Career Profile
-- Experience
-- Location
-- Remote preference
-
----
-
-### Ranking Engine
-
-Ranks jobs according to relevance.
-
----
-
-### CV Tailoring
-
-Adapts the CV to each role.
+Related endpoints should be organized using FastAPI's `APIRouter` to keep the application modular and maintainable.
 
 ---
 
-### Cover Letter Generator
+# System Overview
 
-Creates personalized cover letters.
+The AI Career Agent follows a modular processing pipeline.
+
+```text
+                Job Sources
+                     │
+                     ▼
+              Job Collection
+                     │
+                     ▼
+            Job Normalization
+                     │
+                     ▼
+          Duplicate Detection
+                     │
+                     ▼
+             Job Filtering
+                     │
+                     ▼
+              Job Ranking
+                     │
+                     ▼
+            Recommendations
+                     │
+          ┌──────────┴──────────┐
+          ▼                     ▼
+    CV Tailoring      Cover Letter Generation
+          │                     │
+          └──────────┬──────────┘
+                     ▼
+               User Review
+```
+
+Each stage receives structured input, performs one responsibility, and produces structured output for the next stage.
 
 ---
 
-### Dashboard
+# Architectural Layers
 
-Displays recommended opportunities.
+## Job Collection
+
+Responsible for discovering job opportunities from external sources.
+
+Examples include:
+
+- Public job APIs
+- Company career pages
+- Web scraping
+
+This layer only collects raw job data.
 
 ---
 
-## Development Principles
+## Job Processing
 
-- One responsibility per module
-- Reusable components
-- Easy to test
-- Easy to extend
-- Prefer free APIs
-- Use web scraping where appropriate and permitted
+Responsible for transforming raw job data into a consistent internal representation.
+
+Responsibilities include:
+
+- Data normalization
+- Validation
+- Duplicate detection
+
+The output of this layer is a clean, standardized collection of job postings.
+
+---
+
+## Job Intelligence
+
+Responsible for evaluating job opportunities.
+
+Responsibilities include:
+
+- Career profile matching
+- Job filtering
+- Relevance scoring
+- Recommendation generation
+
+This layer determines which opportunities best match the user's preferences.
+
+---
+
+## AI Assistance
+
+Responsible for improving application quality.
+
+Capabilities include:
+
+- CV tailoring
+- Cover letter generation
+- Recommendation explanations (future)
+
+This layer assists the user but never submits applications automatically.
+
+---
+
+## User Layer
+
+Responsible for presenting recommendations and supporting manual decision-making.
+
+The user always retains final control over every application.
+
+---
+
+# Data Flow
+
+Information flows through the system in one direction.
+
+```text
+Collect
+    ↓
+Normalize
+    ↓
+Validate
+    ↓
+Filter
+    ↓
+Rank
+    ↓
+Recommend
+    ↓
+Assist
+    ↓
+User Decision
+```
+
+Each architectural component communicates through well-defined data structures.
+
+---
+
+# Architectural Principles
+
+The architecture follows these principles.
+
+## Separation of Responsibilities
+
+Each module owns one responsibility.
+
+Responsibilities should not overlap.
+
+---
+
+## Loose Coupling
+
+Modules should communicate through well-defined interfaces.
+
+Avoid unnecessary dependencies between unrelated components.
+
+---
+
+## High Cohesion
+
+Related functionality should remain together.
+
+Unrelated functionality should remain separate.
+
+---
+
+## Modularity
+
+Application functionality should be divided into independent components that can evolve with minimal impact on the rest of the system.
+
+FastAPI routers should group related endpoints while business logic remains outside the API layer.
+
+---
+
+## Extensibility
+
+New job sources, recommendation strategies, and AI capabilities should be added without requiring major architectural changes.
+
+---
+
+## Testability
+
+Architectural components should be independently testable.
+
+Business logic should remain separate from framework-specific code whenever practical.
+
+---
+
+# Scope
+
+This document defines the high-level system architecture.
+
+It does **not** define:
+
+- Project goals
+- Functional requirements
+- Implementation roadmap
+- Coding standards
+- Git workflow
+- Technology selection
+
+Those responsibilities belong to their respective documents.
+
+---
+
+# Future Evolution
+
+The architecture should evolve intentionally as the project grows.
+
+Significant architectural changes should:
+
+1. Follow official framework guidance where applicable.
+2. Preserve modularity and separation of responsibilities.
+3. Minimize coupling between components.
+4. Be reflected in this document before implementation when they materially change the system architecture.

@@ -1,73 +1,71 @@
 # Technology Stack
 
-## Purpose
+> **Purpose:** This document provides a high-level overview of the technologies selected for the AI Career Agent. It explains what technologies are used, why they were selected, and their current adoption status.
 
-This document lists the technologies currently selected for the project and their implementation status.
+The authoritative source for project dependencies is:
 
----
+- `pyproject.toml`
+- `uv.lock`
 
-## Backend
-
-| Technology | Purpose                      | Status  |
-| ---------- | ---------------------------- | ------- |
-| Python     | Primary programming language | In Use  |
-| FastAPI    | REST API framework           | In Use  |
-| Pydantic   | Data validation              | Planned |
-| Uvicorn    | ASGI server                  | In Use  |
+Implementation details belong in their respective documentation.
 
 ---
 
-## Database
+# Technology Selection Principles
 
-| Technology | Purpose                     | Status  |
-| ---------- | --------------------------- | ------- |
-| PostgreSQL | Primary relational database | Planned |
-| SQLAlchemy | ORM                         | Planned |
-| Alembic    | Database migrations         | Planned |
+Technologies adopted by this project should be:
 
----
+- Well documented
+- Actively maintained
+- Widely adopted
+- Cost-effective
+- Modular
+- Suitable for long-term maintenance
 
-## AI and Automation
-
-| Technology     | Purpose                                       | Status |
-| -------------- | --------------------------------------------- | ------ |
-| Claude Code    | Repository-aware autonomous engineering       | In Use |
-| NotebookLM     | Official documentation research and retrieval | In Use |
-| ChatGPT        | Engineering reasoning and design              | In Use |
-| GitHub Copilot | Repository implementation assistance          | In Use |
+Whenever practical, prefer open-source technologies.
 
 ---
 
-## Job Collection
+# Backend
 
-| Technology           | Purpose                                 | Status  |
-| -------------------- | --------------------------------------- | ------- |
-| Public Job APIs      | Job discovery                           | Planned |
-| Company Career Pages | Direct job collection                   | Planned |
-| Web Scraping         | Collect jobs where APIs are unavailable | Planned |
-
----
-
-## Frontend
-
-| Technology | Purpose        | Status |
-| ---------- | -------------- | ------ |
-| TBD        | User dashboard | Future |
+| Technology | Purpose                           | Status |
+| ---------- | --------------------------------- | ------ |
+| Python     | Primary programming language      | In Use |
+| FastAPI    | Web API framework                 | In Use |
+| Pydantic   | Data validation and serialization | In Use |
+| Uvicorn    | ASGI application server           | In Use |
 
 ---
 
-## Infrastructure
+# Database
 
-| Technology | Purpose               | Status  |
-| ---------- | --------------------- | ------- |
-| Git        | Version control       | In Use  |
-| GitHub     | Repository hosting    | In Use  |
-| uv         | Dependency management | In Use  |
-| Docker     | Containerization      | Planned |
+| Technology | Purpose                        | Status  |
+| ---------- | ------------------------------ | ------- |
+| PostgreSQL | Primary relational database    | Planned |
+| SQLAlchemy | Object Relational Mapper (ORM) | Planned |
+| Alembic    | Database migrations            | Planned |
 
 ---
 
-## Testing
+# AI
+
+| Technology | Purpose                                  | Status  |
+| ---------- | ---------------------------------------- | ------- |
+| OpenAI API | CV tailoring and cover letter generation | Planned |
+
+---
+
+# Development
+
+| Technology | Purpose                               | Status |
+| ---------- | ------------------------------------- | ------ |
+| uv         | Dependency and environment management | In Use |
+| Git        | Version control                       | In Use |
+| GitHub     | Repository hosting                    | In Use |
+
+---
+
+# Testing
 
 | Technology | Purpose                      | Status  |
 | ---------- | ---------------------------- | ------- |
@@ -75,7 +73,66 @@ This document lists the technologies currently selected for the project and thei
 
 ---
 
-## Notes
+# Documentation
 
-- Status values represent current implementation state in this repository.
-- Planned technologies become active only when their corresponding roadmap phase starts.
+| Technology | Purpose                         | Status |
+| ---------- | ------------------------------- | ------ |
+| Markdown   | Repository documentation        | In Use |
+| NotebookLM | Official documentation research | In Use |
+
+---
+
+# Optional Technologies
+
+The following technologies may be introduced if project requirements justify them.
+
+Examples include:
+
+- pydantic-settings
+- orjson
+- email-validator
+
+Optional technologies should only be adopted when they provide a clear benefit.
+
+---
+
+# Future Technologies
+
+Future phases of the project may introduce additional technologies.
+
+Potential additions include:
+
+- Docker
+- GitHub Actions
+- Playwright
+
+These technologies should only be adopted when required by the project roadmap.
+
+---
+
+# Scope
+
+This document defines technology selection.
+
+It does **not** define:
+
+- repository organization
+- coding standards
+- system architecture
+- setup procedures
+- deployment procedures
+
+Those responsibilities belong to their respective documents.
+
+---
+
+# Source of Truth
+
+This document provides a human-readable overview of the project's technology choices.
+
+The machine-readable source of truth for project dependencies remains:
+
+- `pyproject.toml`
+- `uv.lock`
+
+Whenever these files and this document differ, the project configuration files take precedence.

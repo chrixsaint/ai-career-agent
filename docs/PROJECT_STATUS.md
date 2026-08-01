@@ -1,47 +1,124 @@
-# AI Career Agent - Project Status
+# Project Status
 
-## Current Phase
+> **Purpose:** This document records the current implementation status of the AI Career Agent. It provides a real-time snapshot of project progress, active work, and the next planned milestone.
+
+The project roadmap is defined in `ROADMAP.md`.
+
+Project requirements are defined in `REQUIREMENTS.md`.
+
+---
+
+# Current Phase
 
 **Phase 1 – Foundation**
 
-## Current Milestone
+---
 
-Implement first API endpoint
+# Current Milestone
+
+Complete the engineering foundation and begin implementing the FastAPI application.
 
 ---
 
-## Completed
+# Completed Milestones
+
+## Repository
 
 - ✅ Repository initialized
-- ✅ GitHub repository created
-- ✅ Core project documentation completed
-- ✅ Engineering standards established
-- ✅ AI Collaboration Guide completed
-- ✅ AI Playbook completed
-- ✅ NotebookLM knowledge base established
-- ✅ Python project initialized with uv
-- ✅ uv configured for application mode
-- ✅ FastAPI app package initialized (`app/__init__.py`)
-- ✅ FastAPI backend framework installed
-- ✅ FastAPI installation verified
-- ✅ uv.lock generated successfully
+- ✅ Git repository configured
+- ✅ Project structure established
+
+## Documentation
+
+- ✅ Repository Standard
+- ✅ README
+- ✅ Project Vision
+- ✅ Requirements
+- ✅ Architecture
+- ✅ Technology Stack
+- ✅ Coding Standards
+- ✅ Git Workflow
+- ✅ AI Playbook
+- ✅ AI Collaboration
+
+## Development Environment
+
+- ✅ Python project initialized with `uv`
+- ✅ Dependency management configured
+- ✅ FastAPI installed
+- ✅ FastAPI application package created
+- ✅ `uv.lock` generated
 
 ---
 
-## Next Milestone
+# Current Task
 
-- Create the FastAPI application skeleton
-- Verify the FastAPI development server
-- Implement the first health check endpoint
+Implement the initial FastAPI application skeleton and the first API endpoint.
 
 ---
 
-## Last Completed Milestone
+# Next Milestone
 
-Development Environment
+Complete the backend application foundation.
+
+Planned work includes:
+
+- FastAPI application initialization
+- Health check endpoint
+- Router organization
+- Configuration management
+- Testing framework initialization
 
 ---
 
-## Last Commit
+# Last Completed Milestone
 
-build: add fastapi backend framework
+Repository engineering documentation completed.
+
+---
+
+# Last Commit
+
+Update this section after every commit.
+
+Example:
+
+```
+docs: complete repository engineering documentation
+```
+
+---
+
+# Known Blockers
+
+None.
+
+---
+
+# Scope
+
+This document reports the **current state** of the project.
+
+It does **not** define:
+
+- Project vision
+- System requirements
+- Architecture
+- Technology choices
+- Development roadmap
+- Implementation plans
+
+Those responsibilities belong to their respective documents.
+
+---
+
+# Update Policy
+
+Update this document whenever:
+
+- The current task changes.
+- A roadmap milestone is completed.
+- A new phase begins.
+- A significant repository change is committed.
+
+Remove outdated information promptly to ensure this document accurately reflects the current state of the project.

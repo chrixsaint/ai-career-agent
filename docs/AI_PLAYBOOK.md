@@ -1,133 +1,195 @@
 # AI Playbook
 
-> **Purpose:** This document defines AI tool orchestration for this repository: which tool to use, when to use it, and what not to use it for.
+> **Purpose:** This document defines how AI tools are used throughout the software development lifecycle of the AI Career Agent. It establishes the responsibilities of each tool, when each tool should be used, and how they work together while following the repository standards.
+
+The AI Playbook defines **tool orchestration**.
+
+Repository governance is defined in `REPOSITORY_STANDARD.md`.
+
+Human-AI collaboration practices are defined in `AI_COLLABORATION.md`.
 
 ---
 
-# AI Tool Selection Principles
+# Guiding Principles
 
-Choose the tool that best matches the task.
+The repository follows these principles when using AI.
 
-- Use the right tool for the right problem.
-- Prefer the smallest tool capable of completing the task.
-- Verify important engineering decisions using official documentation.
-- Avoid asking multiple tools to solve the same problem unless performing validation or review.
+- Use the right tool for the right task.
+- Prefer official documentation over AI-generated assumptions.
+- Verify important engineering decisions before implementation.
+- Avoid asking multiple AI tools to solve the same problem unless performing validation or review.
+- The Git repository remains the project's source of truth.
+
+---
+
+# AI Development Workflow
+
+The recommended engineering workflow is:
+
+1. Research with NotebookLM.
+2. Verify against official documentation.
+3. Design with ChatGPT.
+4. Plan implementation with Claude Code.
+5. Implement with Claude Code or GitHub Copilot.
+6. Review, test, and validate before committing.
+
+Each tool contributes a different capability.
 
 ---
 
 # NotebookLM
 
-**Primary Role**
+## Primary Responsibility
 
 Research and knowledge retrieval.
 
-**Use For**
+## Use For
 
-- Requirements lookup
-- Architecture questions
 - Official documentation
+- Requirements lookup
+- Architecture validation
 - Engineering standards
-- Design validation
+- Repository documentation research
 - Learning project context
 
-**Avoid**
+## Avoid
 
 - Writing production code
-- Modifying repository files
-- Creating repository conventions
-
----
-
-# VS Code Copilot
-
-**Primary Role**
-
-Implementation assistance inside the development environment.
-
-**Use For**
-
-- Code generation
-- Boilerplate
-- Refactoring
-- Unit tests
-- Inline documentation
-- Repository-aware coding assistance
-
-**Avoid**
-
-- High-level architecture decisions
-- Project planning
-- Requirement interpretation without supporting documentation
-
----
-
-# Claude Code
-
-**Primary Role**
-
-Repository-aware autonomous engineering in the local workspace.
-
-**Use For**
-
-- Multi-file implementation tasks
-- Repository-aware refactoring
-- Documentation updates tied to code changes
-- Test updates and verification workflows
-
-**Avoid**
-
-- Replacing official documentation as the authority
-- Introducing workflows not active in this project phase
+- Editing repository files
+- Defining repository conventions
 
 ---
 
 # ChatGPT
 
-**Primary Role**
+## Primary Responsibility
 
 Engineering reasoning and technical design.
 
-**Use For**
+## Use For
 
-- System architecture
-- Design discussions
-- Code reviews
-- Complex debugging
+- Architecture discussions
 - Engineering trade-offs
-- Development planning
 - Documentation design
-- AI engineering framework design
+- Repository governance
+- Design reviews
+- Complex debugging
+- Project planning
 
-**Avoid**
+## Avoid
 
 - Acting as the primary source of official documentation
-- Replacing repository-specific standards
-- Making implementation decisions without project context
+- Making implementation decisions without repository context
+- Replacing project standards
 
 ---
 
-# Collaboration Strategy
+# Claude Code
 
-The AI tools complement one another.
+## Primary Responsibility
 
-Typical workflow:
+Repository-aware software engineering.
 
-1. Research with NotebookLM.
-2. Validate against official documentation.
-3. Design with ChatGPT.
-4. Implement with VS Code Copilot or Claude Code.
-5. Verify and review before committing.
+## Use For
+
+- Repository exploration
+- Multi-file implementation
+- Refactoring
+- Planning implementation
+- Running tests
+- Terminal operations
+- Repository maintenance
+- Codebase analysis
+
+Claude Code has awareness of:
+
+- Repository structure
+- Git history
+- Terminal environment
+- `CLAUDE.md`
+- `.claude/`
+
+## Avoid
+
+- Replacing official documentation
+- Introducing repository conventions without documented standards
 
 ---
 
-# Guiding Principle
+# GitHub Copilot
 
-No AI assistant is the source of truth.
+## Primary Responsibility
 
-- Official documentation is the authority for technical standards.
-- The Git repository is the authority for project knowledge.
-- AI assistants help interpret, implement, and improve the project while following repository standards.
+Implementation assistance inside the development environment.
+
+## Use For
+
+- Code completion
+- Boilerplate generation
+- Refactoring assistance
+- Test generation
+- Inline documentation
+- IDE-assisted development
+
+## Avoid
+
+- High-level architectural decisions
+- Repository governance
+- Requirement interpretation without supporting documentation
 
 ---
 
-**Last Updated:** 2026-08-01
+# Responsibility Matrix
+
+| Activity                | Primary Tool                 |
+| ----------------------- | ---------------------------- |
+| Official documentation  | NotebookLM                   |
+| Repository research     | Claude Code                  |
+| Architecture            | ChatGPT                      |
+| Engineering design      | ChatGPT                      |
+| Implementation planning | Claude Code                  |
+| Code generation         | GitHub Copilot / Claude Code |
+| Repository refactoring  | Claude Code                  |
+| Debugging               | Claude Code / ChatGPT        |
+| Documentation drafting  | ChatGPT                      |
+| Repository review       | Claude Code                  |
+
+---
+
+# Source of Truth
+
+The repository follows this order of authority:
+
+1. Official documentation
+2. Repository standards
+3. Project documentation
+4. Source code
+5. AI assistants
+
+AI tools assist development.
+
+They do not replace official documentation or repository standards.
+
+---
+
+# Scope
+
+This document defines how AI tools are orchestrated during software development.
+
+It does **not** define:
+
+- Human collaboration principles
+- Repository organization
+- Coding standards
+- System architecture
+- Project requirements
+
+Those responsibilities belong to their respective documents.
+
+---
+
+# Continuous Improvement
+
+The AI engineering workflow should evolve as AI tooling improves.
+
+Changes to tool responsibilities should be based on official documentation and practical engineering experience rather than personal preference.

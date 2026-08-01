@@ -1,12 +1,18 @@
 # Requirements
 
-## Purpose
+> **Purpose:** This document defines the functional and non-functional requirements for the AI Career Agent. It serves as the project's functional contract by specifying what the system must do and the qualities it must exhibit.
 
-This document defines the functional and non-functional requirements for the AI Career Agent. Every implemented feature should satisfy one or more requirements in this document.
+System design belongs in `ARCHITECTURE.md`.
+
+Technology selection belongs in `technology-stack.md`.
+
+Project planning belongs in `ROADMAP.md`.
 
 ---
 
 # Functional Requirements
+
+Functional requirements define the capabilities the system shall provide.
 
 ## Job Discovery
 
@@ -24,7 +30,7 @@ The system shall support collecting jobs from company career pages.
 
 ### FR-004
 
-The system shall normalize all collected jobs into a common internal format.
+The system shall normalize all collected jobs into a common internal representation.
 
 ### FR-005
 
@@ -32,11 +38,11 @@ The system shall detect and remove duplicate job postings.
 
 ---
 
-## Job Filtering
+## Job Intelligence
 
 ### FR-006
 
-The system shall filter jobs based on selected career profiles.
+The system shall filter opportunities according to configured career profiles.
 
 ### FR-007
 
@@ -44,15 +50,15 @@ The system shall support filtering by location.
 
 ### FR-008
 
-The system shall support filtering by job type (Internship, Graduate, Entry-Level, etc.).
+The system shall support filtering by employment type.
 
 ### FR-009
 
-The system shall rank opportunities by relevance.
+The system shall rank opportunities according to relevance.
 
 ### FR-010
 
-The system shall recommend a limited set of high-quality opportunities per day.
+The system shall recommend the most relevant opportunities.
 
 ---
 
@@ -60,19 +66,19 @@ The system shall recommend a limited set of high-quality opportunities per day.
 
 ### FR-011
 
-The system shall support Software Engineering career opportunities.
+The system shall support software engineering career profiles.
 
 ### FR-012
 
-The system shall support Biomedical Engineering career opportunities.
+The system shall support biomedical engineering career profiles.
 
 ### FR-013
 
-The system shall support Biochemistry career opportunities.
+The system shall support biochemistry career profiles.
 
 ### FR-014
 
-The system shall support hybrid career paths.
+The system shall support interdisciplinary career profiles.
 
 ---
 
@@ -80,72 +86,120 @@ The system shall support hybrid career paths.
 
 ### FR-015
 
-The system shall tailor the user's CV for each selected job.
+The system shall generate tailored CV recommendations for selected opportunities.
 
 ### FR-016
 
-The system shall generate tailored cover letters.
+The system shall generate tailored cover letter recommendations.
 
 ### FR-017
 
-The system shall preserve the user's final decision before submitting any application.
+The system shall require explicit user approval before any application-related action.
 
 ---
 
-## AI Assistance
+## Explainability
 
 ### FR-018
 
-The system shall use AI to improve application quality.
+The system shall explain why an opportunity was recommended.
 
 ### FR-019
 
-The system shall explain why a job is recommended.
-
-### FR-020
-
-The system shall expose a programmatic API for core workflows.
+The system shall present recommendation information in a way that supports user decision-making.
 
 ---
 
 # Non-Functional Requirements
 
+Non-functional requirements define the expected qualities of the system.
+
 ### NFR-001
-
-The system should prioritize open-source technologies whenever practical.
-
-### NFR-002
-
-The system should minimize operational costs.
-
-### NFR-003
 
 The architecture shall be modular.
 
+### NFR-002
+
+The system shall prioritize maintainability.
+
+### NFR-003
+
+The system should prioritize open-source technologies whenever practical.
+
 ### NFR-004
 
-The system should be maintainable and easy to extend.
+The system should minimize operational costs.
 
 ### NFR-005
 
-The project should use clear documentation.
+The system shall support adding new job sources with minimal architectural impact.
 
 ### NFR-006
 
-The system should support adding new job sources with minimal code changes.
+The project shall maintain clear and up-to-date documentation.
 
 ### NFR-007
 
-The user shall retain final control over every application submission.
+The user shall retain final control over every application decision.
 
-### NFR-008
+---
 
-The codebase shall use Python type hints for public interfaces.
+# Assumptions
 
-### NFR-009
+The current requirements assume:
 
-API data contracts shall use Pydantic models.
+- Public job data can be obtained through APIs, company career pages, or other permitted sources.
+- AI services are available when application assistance features are enabled.
+- The project is initially intended for a single user.
+- Career interests may evolve over time.
 
-### NFR-010
+These assumptions may be revised as the project evolves.
 
-Automated tests shall be implemented with pytest.
+---
+
+# Constraints
+
+The following constraints guide implementation.
+
+- User approval is required before any application is submitted.
+- The implementation shall follow repository standards.
+- Architecture decisions shall preserve modularity.
+- Functional requirements should not depend on specific implementation technologies.
+- Requirements should remain implementation-independent.
+
+---
+
+# Scope
+
+This document defines **what** the system must accomplish.
+
+It does **not** define:
+
+- System architecture
+- Technology selection
+- Source code organization
+- Implementation details
+- Development schedule
+
+Those responsibilities belong to their respective documents.
+
+---
+
+# Traceability
+
+Every implemented feature should satisfy one or more functional or non-functional requirements.
+
+Requirements should be updated before implementing functionality that changes the expected behavior of the system.
+
+---
+
+# Future Evolution
+
+Requirements should evolve intentionally as project goals change.
+
+New requirements should:
+
+1. Represent genuine user or business needs.
+2. Avoid implementation details.
+3. Be uniquely identifiable.
+4. Preserve backward traceability whenever practical.

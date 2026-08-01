@@ -1,125 +1,231 @@
 # Coding Standards
 
-## Purpose
+> **Purpose:** This document defines the implementation standards for source code in the AI Career Agent repository. It establishes the coding conventions, engineering principles, and framework-specific practices that ensure the codebase remains readable, maintainable, and consistent.
 
-This document defines implementation quality standards for Python, FastAPI, and pytest code in this repository.
+These standards apply to all production code and automated tests.
 
-These standards apply to application code and tests.
+Repository organization is governed by **REPOSITORY_STANDARD.md**.
+
+Version control is governed by **GIT_WORKFLOW.md**.
+
+System design is governed by **ARCHITECTURE.md**.
 
 ---
 
 # Core Principles
 
-- Readability over cleverness
-- Simplicity over unnecessary complexity
-- Consistency over personal preference
-- Small, focused modules
-- Explicit behavior over implicit behavior
+The project follows these engineering principles:
+
+- Readability over cleverness.
+- Simplicity over unnecessary complexity.
+- Consistency over personal preference.
+- Composition over duplication.
+- Small, focused modules.
+- Explicit behavior over implicit behavior.
+- Write code for humans first.
+
+---
+
+# Engineering Principles
+
+## Single Responsibility Principle (SRP)
+
+Every module, class, and function should have one clear responsibility.
+
+---
+
+## DRY (Don't Repeat Yourself)
+
+Avoid duplicated logic.
+
+Extract reusable components when duplication becomes apparent.
+
+---
+
+## KISS (Keep It Simple)
+
+Prefer the simplest solution that correctly solves the problem.
+
+Avoid unnecessary abstractions.
+
+---
+
+## YAGNI (You Aren't Gonna Need It)
+
+Do not implement features before they are required by the roadmap.
+
+Future extensibility should not justify unnecessary complexity.
 
 ---
 
 # Python Standards
 
-- Use type hints for function and method signatures.
-- Use `snake_case` for modules, variables, and functions.
-- Keep functions focused on one responsibility.
-- Prefer standard library modules where practical.
-- Avoid broad `except Exception` handlers unless the boundary requires it.
+Follow the official Python style guide where applicable.
+
+## Type Hints
+
+Use type hints for:
+
+- Function parameters
+- Return values
+- Public methods
+- Shared interfaces
+
+Type hints improve readability, static analysis, and FastAPI integration.
 
 ---
 
-# Naming Conventions
+## Naming
 
-Names should be:
+Use:
 
-- Descriptive
-- Consistent
-- Easy to understand
-- Free of unnecessary abbreviations
+- `snake_case` for variables, functions, modules, and packages.
+- `PascalCase` for classes.
+- `UPPER_CASE` for constants.
 
-Avoid generic names such as:
+Choose descriptive names.
 
-- data
-- info
-- temp
-- value
-- object
-
-Prefer names that clearly describe their purpose.
+Avoid abbreviations unless they are widely understood.
 
 ---
 
-# Functions
+## Functions
 
 Functions should:
 
-- Have one responsibility.
-- Be small and focused.
-- Have descriptive names.
+- Perform one responsibility.
+- Be easy to understand.
+- Minimize side effects.
 - Avoid excessive nesting.
 - Return predictable results.
-- Minimize side effects.
 
 ---
 
-# Classes
+## Classes
 
 Classes should:
 
 - Represent one concept.
-- Have one clear responsibility.
-- Hide implementation details.
+- Encapsulate implementation details.
 - Expose a minimal public interface.
 
 ---
 
 # FastAPI Standards
 
-- Define request and response schemas with Pydantic models.
-- Use `APIRouter` for route grouping instead of placing all routes in a single file.
-- Use FastAPI dependency injection (`Depends`) for shared services and request-scoped dependencies.
-- Declare `response_model` on endpoints when returning structured data.
-- Keep endpoint handlers thin; place business logic in service modules.
+Follow official FastAPI architecture and programming practices.
 
-## Async and Sync Guidance
+## Application Structure
 
-- Use `async def` for I/O-bound handlers and dependencies.
-- Use regular `def` for CPU-bound or purely synchronous logic.
-- Do not block the event loop with long-running synchronous I/O in async handlers.
+- Group endpoints using `APIRouter`.
+- Keep route handlers thin.
+- Place business logic inside service modules.
+- Separate schemas, routers, and services.
+
+---
+
+## Pydantic Models
+
+Use Pydantic models for:
+
+- Request validation
+- Response serialization
+- Shared data contracts
+
+Avoid using raw dictionaries for structured API data.
+
+---
+
+## Dependency Injection
+
+Use `Depends()` for:
+
+- Database sessions
+- Authentication
+- Shared services
+- Request-scoped dependencies
+
+Avoid manually constructing dependencies inside route handlers.
+
+---
+
+## Response Models
+
+Declare `response_model` whenever an endpoint returns structured data.
+
+This ensures:
+
+- automatic validation
+- OpenAPI documentation
+- consistent API contracts
+
+---
+
+## Async Programming
+
+Use `async def` for:
+
+- Database operations
+- HTTP requests
+- File operations
+- Other I/O-bound work
+
+Use regular `def` for CPU-bound or synchronous logic.
+
+Do not block the event loop with long-running synchronous operations.
 
 ---
 
 # Error Handling
 
-Errors should:
+Handle errors explicitly.
 
-- Be handled explicitly.
-- Provide meaningful messages.
-- Avoid silent failures.
-- Avoid broad exception handling unless justified.
+Prefer:
 
-- Define global exception handlers at the API boundary for predictable error responses.
+- meaningful exception messages
+- predictable API responses
+- global FastAPI exception handlers
+
+Avoid:
+
+- silent failures
+- broad exception handling
+- swallowing exceptions
 
 ---
 
 # Logging
 
-Log information should help diagnose problems.
+Logs should help diagnose problems.
 
-Avoid logging:
+Never log:
 
-- secrets
 - passwords
+- secrets
 - API keys
+- tokens
 - personal information
 
-Logs should provide useful context without exposing sensitive data.
+Logs should provide useful context without exposing sensitive information.
+
+---
+
+# Documentation
+
+Public modules, classes, and important functions should include documentation explaining:
+
+- purpose
+- inputs
+- outputs
+- important assumptions
+
+Code should be understandable without excessive comments.
 
 ---
 
 # Testing
 
-Use `pytest` for automated tests.
+Use `pytest` for automated testing.
 
 Tests should be:
 
@@ -128,11 +234,13 @@ Tests should be:
 - readable
 - maintainable
 
-FastAPI testing should:
+FastAPI tests should:
 
-- Use `fastapi.testclient.TestClient` for API-level tests.
-- Cover success and failure cases for each endpoint.
-- Validate response status codes and response schemas.
+- use `TestClient`
+- validate request handling
+- validate response models
+- verify HTTP status codes
+- cover both successful and failure scenarios
 
 ---
 
@@ -146,12 +254,27 @@ Refactoring should improve:
 - maintainability
 - modularity
 
-without changing external behavior.
+without changing observable behavior.
+
+---
+
+# Scope
+
+This document defines implementation quality.
+
+It does **not** define:
+
+- repository organization
+- Git workflow
+- system architecture
+- project planning
+
+Those responsibilities belong to their respective documents.
 
 ---
 
 # Continuous Improvement
 
-These standards are intended to evolve with the project.
+These standards should evolve alongside the project.
 
-Major changes to engineering practices should be documented and agreed upon before adoption.
+Whenever official Python, FastAPI, or pytest guidance changes, this document should be reviewed and updated accordingly.
