@@ -101,6 +101,19 @@ Data validation and application settings.
 
 (To be added.)
 
+## The relationship between CRUD operation AND I/O
+
+specifically around persistent storage/records
+
+So yes — every CRUD operation is implemented via I/O, but not all I/O is CRUD.
+
+Mapping them out
+CRUD operation What it does Is it I/O?
+Create Insert a new record Yes — writing (output) to a DB/file
+Read Fetch existing data Yes — reading (input) from a DB/file
+Update Modify existing data Yes — read + write
+Delete Remove data Yes — write (a deletion is still a write operation)
+
 ---
 
 ## SQLModel
