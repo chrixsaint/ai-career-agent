@@ -80,6 +80,14 @@ Always prioritize official documentation over third-party sources.
 
 ---
 
+# START APPLICATION
+
+fastapi dev app/main.py
+
+curl http://127.0.0.1:8000/health #
+
+---
+
 # Planning
 
 (Added as the project evolves.)
@@ -89,6 +97,28 @@ Always prioritize official documentation over third-party sources.
 # Code Review
 
 (Added as the project evolves.)
+
+Review this file and suggest meaningful comments that improve long-term maintainability.
+
+Comment only where it helps explain:
+
+- the intent of the code,
+- the architectural decision,
+- the reason a particular approach was chosen,
+- non-obvious business rules,
+- important implementation details that future developers should know.
+
+Do NOT comment:
+
+- obvious Python syntax,
+- imports,
+- simple assignments,
+- self-explanatory code,
+- every function or every line.
+
+Comments should explain WHY, not WHAT.
+
+Follow the project's coding standards and keep comments concise, accurate, and maintainable.
 
 ---
 
