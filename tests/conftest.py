@@ -1,10 +1,13 @@
+from collections.abc import AsyncGenerator
+
 import pytest
-from app.main import app
 from httpx import ASGITransport, AsyncClient
+
+from app.main import app
 
 
 @pytest.fixture
-async def client():
+async def client() -> AsyncGenerator[AsyncClient, None]:
     """
     Asynchronous fixture that provides an AsyncClient for integration testing.
     """

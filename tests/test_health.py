@@ -1,8 +1,9 @@
 import pytest
+from httpx import AsyncClient
 
 
 @pytest.mark.anyio
-async def test_health_check(client):
+async def test_health_check(client: AsyncClient) -> None:
     """
     Verify that the system health check endpoint is responsive and returns
     the expected foundation status.

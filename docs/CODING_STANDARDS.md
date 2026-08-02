@@ -236,7 +236,7 @@ Tests should be:
 
 FastAPI tests should:
 
-- use `TestClient`
+- use `AsyncClient`
 - validate request handling
 - validate response models
 - verify HTTP status codes

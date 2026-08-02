@@ -10,7 +10,7 @@ Project requirements are defined in `REQUIREMENTS.md`.
 
 # Current Phase
 
-**Phase 1 – Foundation**
+**Phase 2 – Job Collection**
 
 ---
 
@@ -22,24 +22,25 @@ Project requirements are defined in `REQUIREMENTS.md`.
 - ✅ Documentation framework
 - ✅ FastAPI application setup
 - ✅ Initial testing framework
+- ✅ Continuous integration preparation
 
 ---
 
 # Current Milestone
 
-Continuous integration preparation
+Job source abstraction
 
 ---
 
 # Last Completed Milestone
 
-Initial testing framework
+Continuous integration preparation
 
 ---
 
 # Last Commit
 
-test: initialize asynchronous testing framework
+chore: prepare continuous integration foundation
 
 ---
 

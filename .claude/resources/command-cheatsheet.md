@@ -289,6 +289,26 @@ Git Documentation
 git add .
 ```
 
+## To format file after writing
+
+uv run ruff format tests/conftest.py
+
+## to check if the files have been formated
+
+uv run ruff check tests/conftest.py
+
+## Verify the entire repository
+
+uv run ruff check .
+
+## Verify formatting
+
+uv run ruff format --check .
+
+## Verify functionality
+
+pytest
+
 ### Purpose
 
 Stage modified files for commit.
