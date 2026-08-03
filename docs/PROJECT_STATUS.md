@@ -26,21 +26,25 @@ Project requirements are defined in `REQUIREMENTS.md`.
 
 ---
 
-# Current Milestone
-
-Job source abstraction
-
----
-
 # Last Completed Milestone
 
 Continuous integration preparation
 
 ---
 
-# Last Commit
+# Last Commit message
 
-chore: prepare continuous integration foundation
+chore: "Rename AI engineering guide and synchronize repository documentation"
+
+---
+
+# Current Milestone
+
+Job source abstraction
+
+The next implementation task is to define the `BaseCollector` abstract interface in:
+
+`app/services/collection/base.py`
 
 ---
 
