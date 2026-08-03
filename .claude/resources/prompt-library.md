@@ -206,6 +206,34 @@ Definition of Done
 
 ---
 
+##
+
+docs/
+
+Core Project
+├── PROJECT_VISION.md
+├── REQUIREMENTS.md
+├── ROADMAP.md
+├── PROJECT_STATUS.md
+
+Architecture
+├── ARCHITECTURE.md
+├── DATABASE_DESIGN.md
+├── DATABASE_ARCHITECTURE.md
+├── DATABASE_SCHEMA.md
+
+Engineering
+├── IMPLEMENTATION_GUIDE.md
+├── CODING_STANDARDS.md
+├── GIT_WORKFLOW.md
+├── REPOSITORY_STANDARD.md
+├── technology-stack.md
+
+AI
+├── AI_ENGINEERING_GUIDE.md
+├── AI_DEVELOPMENT_PLAYBOOK.md
+├── AI_COLLABORATION.md
+
 # Documentation
 
 (Added as the project evolves.)

@@ -20,5 +20,5 @@
 
 ### AI Engineering
 
-- AI Playbook: `docs/AI_PLAYBOOK.md`
+- AI Playbook: `docs/AI_DEVELOPMENT_PLAYBOOK.md`
 - AI Collaboration: `docs/AI_COLLABORATION.md`
