@@ -142,6 +142,15 @@ The project shall maintain clear and up-to-date documentation.
 
 The user shall retain final control over every application decision.
 
+### NFR-008
+
+The system shall interact with external AI services through a provider-independent abstraction layer.
+The architecture shall allow AI providers to be introduced, replaced, or removed with minimal impact on the remainder of the application.
+
+**Rationale**
+
+This requirement minimizes vendor lock-in, supports long-term maintainability, and preserves the modular architecture defined by the project.
+
 ---
 
 # Assumptions
@@ -150,6 +159,7 @@ The current requirements assume:
 
 - Public job data can be obtained through APIs, company career pages, or other permitted sources.
 - AI services are available when application assistance features are enabled.
+- The implementation may support multiple AI providers through a provider-independent architecture.
 - The project is initially intended for a single user.
 - Career interests may evolve over time.
 

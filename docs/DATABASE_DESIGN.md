@@ -190,3 +190,5 @@ Possible future additions include:
 This document defines the conceptual data model only.
 
 Implementation details such as SQL schema, indexes, constraints, and migrations will be documented separately during development.
+
+Implementation details for the physical persistence layer are defined in DATABASE_ARCHITECTURE.md.

@@ -44,8 +44,8 @@ It does not replace:
 - **Execution Tasks**:
   1. Install `uv` using the standalone installer.
   2. Synchronize the environment with `uv sync`.
-  3. Configure `CLAUDE.md` with project-specific instructions.
-- **Verification**: Verify the environment state with `uv venv` and confirm `CLAUDE.md` is loaded.
+  3. Configure `AI_ENGINEERING_GUIDE.md` with project-specific instructions.
+- **Verification**: Verify the environment state with `uv venv` and confirm `AI_ENGINEERING_GUIDE.md` is loaded.
 - **Definition of Done**: The environment is stable, documented, and ready for incremental development.
 
 #### **Milestone: FastAPI application setup**
@@ -71,17 +71,19 @@ It does not replace:
 - **Verification**: Run `uv lock --check` to ensure the lockfile is up to date.
 - **Definition of Done**: The project uses the machine-readable source of truth for all dependencies.
 
-#### **Milestone: Documentation framework**
+###### **Milestone: Documentation framework**
 
 - **Objective**: Establish a structured knowledge base and evidence-based research methodology.
-- **Official Documentation**: [Claude: Write an effective CLAUDE.md](https://code.claude.com/docs/en/best-practices#write-an-effective-claude-md).
-- **Completion Criteria**: The repository contains active documentation for vision, requirements, architecture, and standards.
+- **Official Documentation**: [AI Engineering Guide](AI_ENGINEERING_GUIDE.md).
+- **Completion Criteria**: The repository contains active documentation for vision, requirements, architecture, and engineering standards.
 - **Execution Tasks**:
-  1. Define the **Document Taxonomy** and naming conventions.
+  1. Define the **Document Taxonomy** and naming conventions in REPOSITORY_STANDARD.md.
   2. Implement the **NotebookLM Research Methodology**.
+  3. Initialize AI_ENGINEERING_GUIDE.md and AI_DEVELOPMENT_PLAYBOOK.md.
 - **Verification**: Review documentation for adherence to the **Single Responsibility Principle**.
 - **Definition of Done**: Documentation provides a stable, authoritative source of truth for the project.
 
+```
 #### **Milestone: Initial testing framework**
 
 - **Objective**: Establish an asynchronous testing baseline "from day 0".
@@ -107,18 +109,18 @@ It does not replace:
 
 ---
 
-### **Phase 2 – Job Collection**
+#####  **Phase 2 – Job Collection**
+Prerequisite: Review **DATABASE_ARCHITECTURE.md** and **DATABASE_SCHEMA.md** before implementing SQLModel models.
 
-#### **Milestone: Job source abstraction**
-
-- **Objective**: Design a Strategy pattern interface for scalable discovery from multiple sources.
-- **Official Documentation**: [Pydantic: Models](https://docs.pydantic.dev/latest/concepts/models/).
-- **Completion Criteria**: A common Python interface defines the contract for all collectors.
-- **Execution Tasks**:
-  1. Define an abstract base class for collectors in `app/services/collection/base.py`.
-  2. Create `RawJob` Pydantic models for standardized collection output.
-- **Verification**: Implement a mock collector that satisfies the interface and Pydantic model.
-- **Definition of Done**: New job sources can be added with minimal architectural impact.
+######  **Milestone: Job source abstraction**
+*   **Objective**: Implement a Strategy pattern for various job discovery methods.
+*   **Official Documentation**: [Python: abc — Abstract Base Classes](https://docs.python.org/3/library/abc.html).
+*   **Completion Criteria**: A unified interface exists for all job collectors.
+*   **Execution Tasks**:
+    1. Define the `BaseCollector` ABC in `app/services/collection/base.py`.
+    2. Implement common normalization methods.
+*   **Verification**: Create a `MockCollector` and verify it returns standardized job data.
+*   **Definition of Done**: Collectors are modular and adhere to the Single Responsibility Principle.
 
 #### **Milestone: Public API integration**
 
@@ -164,23 +166,47 @@ It does not replace:
 - **Verification**: Process a dataset containing known duplicates and verify they are filtered.
 - **Definition of Done**: The processing pipeline maintains data integrity by removing duplicates.
 
-#### **Milestone: Data persistence**
-
-- **Objective**: Implement the SQLModel/PostgreSQL layer for long-term storage.
-- **Official Documentation**: [SQLModel: Tutorial](https://sqlmodel.tiangolo.com/tutorial/); [Alembic: Tutorial](https://alembic.sqlalchemy.org/en/latest/tutorial.html).
-- **Completion Criteria**: Database tables match the conceptual design and are managed by static migrations.
-- **Execution Tasks**:
-  1. Define `Job`, `Company`, and `JobSource` SQLModels in `app/models/`.
-  2. Initialize Alembic and generate the first static, reversible revision.
-  3. Configure an asynchronous session dependency for the API layer.
-- **Verification**: Run `alembic upgrade head` and verify the PostgreSQL schema.
-- **Definition of Done**: The persistence layer is active, versioned, and managed by Alembic.
+######  **Milestone: Data persistence**
+*   **Objective**: Implement the SQLModel/PostgreSQL layer for long-term storage.
+*   **Official Documentation**: [SQLModel: Tutorial](https://sqlmodel.tiangolo.com/tutorial/); [Alembic: Tutorial](https://alembic.sqlalchemy.org/en/latest/tutorial.html).
+*   **Completion Criteria**: Database tables match the physical schema and are version-managed.
+*   **Execution Tasks**:
+    1. Define `Job`, `Company`, and `JobSource` models in `app/models/` following **DATABASE_SCHEMA.md**.
+    2. Initialize the migration environment in the `migrations/` directory.
+    3. Generate the initial static, reversible migration.
+*   **Verification**: Run `alembic upgrade head` and verify the physical schema in PostgreSQL.
+*   **Definition of Done**: Data is persistable, versioned, and managed by Alembic.
+```
 
 ---
 
-### **Phase 3 – Job Intelligence**
+##### **Phase 3 – Job Intelligence**
 
-#### **Milestone: Career profile filtering**
+###### **Milestone: AI service abstraction**
+
+- **Objective**: Implement a provider-independent Strategy pattern interface for all AI capabilities.
+- **Official Documentation**: [Python: abc — Abstract Base Classes](https://docs.python.org/3/library/abc.html); [Pydantic: Models](https://docs.pydantic.dev/latest/concepts/models/).
+- **Completion Criteria**: A common Python interface defines the contract for all AI inference and generation tasks.
+- **Execution Tasks**:
+  1. Define the `AIProvider` abstract base class in `app/services/ai/base.py`.
+  2. Implement core members: `generate_text`, `generate_structured_output` (using Pydantic models), and `is_configured`.
+  3. Define internal AI service exception types to isolate vendor errors.
+- **Verification**: Create a `MockAIProvider` that satisfies the interface and returns deterministic test data.
+- **Definition of Done**: The application interacts with AI capabilities through a stable abstraction that contains no vendor-specific logic.
+
+###### **Milestone: AI provider integration (Gemini & Groq)**
+
+- **Objective**: Implement concrete AI providers for the primary and fallback services.
+- **Official Documentation**: [Gemini API: Quickstart](https://ai.google.dev/gemini-api/docs/quickstart); [Groq: OpenAI Compatibility](https://console.groq.com/docs/openai).
+- **Completion Criteria**: The system can execute inference runs using Google Gemini as the primary and Groq as the resilient fallback.
+- **Execution Tasks**:
+  1. Implement the `GeminiProvider` using the official Google Generative AI SDK.
+  2. Implement the `GroqProvider` using OpenAI-compatible client standards.
+  3. Manage API keys for both providers using `pydantic-settings` and `.env`.
+- **Verification**: Verify successful `generate_text` responses from both providers in development logs.
+- **Definition of Done**: Both primary and fallback providers are functional and swappable via the service layer.
+
+###### **Milestone: Career profile filtering**
 
 - **Objective**: Filter opportunities according to user-defined career categories.
 - **Official Documentation**: [Pydantic: Field Validation](https://docs.pydantic.dev/latest/concepts/fields/).
@@ -191,96 +217,92 @@ It does not replace:
 - **Verification**: Test category assignment against known job types.
 - **Definition of Done**: Jobs are methodically filtered based on configured career profiles.
 
-#### **Milestone: Recommendation engine**
+###### **Milestone: Recommendation engine**
 
 - **Objective**: Orchestrate the ranking logic for the discovery pipeline.
 - **Official Documentation**: [FastAPI: Dependencies](https://fastapi.tiangolo.com/tutorial/dependencies/).
 - **Completion Criteria**: The system produces an ordered list of opportunities for the user.
 - **Execution Tasks**:
   1. Implement the intelligence service layer.
-  2. Integrate relevance scoring and profile matching.
-- **Verification**: Verify the service returns structured recommendation data.
-- **Definition of Done**: The engine determines which opportunities match user preferences.
+  2. Integrate the AI service abstraction for relevance scoring and profile matching.
+  3. Implement failover logic to switch providers if the primary hits rate limits.
+- **Verification**: Verify the service returns structured recommendation data using the abstraction.
+- **Definition of Done**: The engine determines which opportunities match user preferences using a provider-agnostic pipeline.
 
-#### **Milestone: Relevance scoring**
+###### **Milestone: Relevance scoring**
 
-- **Objective**: Leverage LLMs to evaluate job relevance numerically.
-- **Official Documentation**: [OpenAI: Create chat completion](https://developers.openai.com/api/reference/resources/chat/subresources/completions/methods/create).
+- **Objective**: Leverage LLMs to evaluate job relevance numerically via the abstraction layer.
+- **Official Documentation**: [Gemini API: Structured Outputs](https://ai.google.dev/gemini-api/docs/structured-output).
 - **Completion Criteria**: Jobs receive a numerical relevance score based on the user's profile.
 - **Execution Tasks**:
-  1. Implement the OpenAI client service with structured prompt templates.
-  2. Design system prompts that return structured JSON (score + reasoning).
-- **Verification**: Execute a scoring run and verify the JSON output meets requirements.
-- **Definition of Done**: Intelligence scoring is numerical, data-driven, and model-powered.
+  1. Design prompt templates that use the `generate_structured_output` method.
+  2. Define Pydantic models for the scoring response (score + reasoning).
+  3. Implement system prompts optimized for Gemini's structured output standards.
+- **Verification**: Execute a scoring run and verify the validated Pydantic output meets requirements.
+- **Definition of Done**: Intelligence scoring is numerical, data-driven, and model-powered through the abstraction.
 
-#### **Milestone: Explainable recommendations**
+###### **Milestone: Explainable recommendations**
 
-- **Objective**: Provide human-readable reasoning for system recommendations.
-- **Official Documentation**: [OpenAI: Prompting Best Practices (XML)](https://platform.openai.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#structure-prompts-with-xml-tags).
+- **Objective**: Provide human-readable reasoning for system recommendations using model "Thinking" capabilities.
+- **Official Documentation**: [Gemini API: Thinking](https://ai.google.dev/gemini-api/docs/thinking).
 - **Completion Criteria**: Users can view the reasoning behind every recommendation.
 - **Execution Tasks**:
   1. Capture AI explanations during the relevance scoring milestone.
-  2. Expose the `ai_explanation` field through the API schemas.
-- **Verification**: Review AI-generated explanations for clarity and groundedness.
-- **Definition of Done**: The system explains why an opportunity was recommended.
+  2. Utilize XML tags (e.g., `<thinking>`) in prompts to improve grounding and reasoning quality.
+  3. Expose the `ai_explanation` field through the API schemas.
+- **Verification**: Review AI-generated explanations for clarity, groundedness, and adherence to user preferences.
+- **Definition of Done**: The system explains why an opportunity was recommended using the provider's reasoning capability.
 
-#### **Milestone: Daily recommendation generation**
+###### **Milestone: Daily recommendation generation**
 
 - **Objective**: Automate the batch generation of recommendations.
 - **Official Documentation**: [FastAPI: Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
 - **Completion Criteria**: A new set of recommendations is available to the user daily.
 - **Execution Tasks**:
   1. Implement a pipeline runner that processes new jobs through the discovery flow.
-  2. Persist the results in the `JobRecommendation` table.
+  2. Persist the results in the `job_recommendation` table.
 - **Verification**: Trigger a full run and verify that the `date_generated` field is current.
 - **Definition of Done**: Recommendation generation is a repeatable, daily pipeline.
 
 ---
 
-### **Phase 4 – Application Assistance**
+---
 
-#### **Milestone: CV tailoring**
+##### **Phase 4 – Application Assistance**
 
-- **Objective**: Generate tailored CV recommendations for selected jobs.
-- **Official Documentation**: [OpenAI: Chat Completions (User Message)](<https://developers.openai.com/api/reference/resources/chat#(resource)%20chat.completions%20%3E%20(model)%20chat_completion_user_message_param%20%3E%20(schema)>).
+###### **Milestone: CV tailoring**
+
+- **Objective**: Generate tailored CV recommendations for selected jobs through the AI abstraction.
+- **Official Documentation**: [Gemini API: Long Context](https://ai.google.dev/gemini-api/docs/long-context).
 - **Completion Criteria**: The system produces job-specific CV improvement suggestions.
 - **Execution Tasks**:
-  1. Implement a tailoring service that combines Job Data + User CV.
-  2. Design prompts that focus on "minimal, verifiable improvements".
-- **Verification**: Manually review a tailored CV against the job requirements.
-- **Definition of Done**: The system assists the user without submitting applications automatically.
+  1. Implement a tailoring service that consumes the `AIProvider` interface.
+  2. Design prompts that focus on "minimal, verifiable improvements" grounded in the job description.
+  3. Use Gemini’s long-context window to analyze the full career history without truncation.
+- **Verification**: Manually review a tailored CV against the job requirements for accuracy.
+- **Definition of Done**: The system assists the user without vendor lock-in or automatic submission.
 
-#### **Milestone: Cover letter generation**
+###### **Milestone: Cover letter generation**
 
 - **Objective**: Draft high-quality cover letters based on job and user data.
-- **Official Documentation**: [OpenAI: Prompting Best Practices (Role)](https://platform.openai.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#give-claude-a-role).
+- **Official Documentation**: [Claude Platform Docs: Prompting best practices](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices).
 - **Completion Criteria**: AI-generated cover letter drafts are available for user approval.
 - **Execution Tasks**:
-  1. Implement the generation service using the OpenAI Chat API.
-  2. Persist drafts in the `CoverLetter` table.
-- **Verification**: Confirm the letter mentions specific job and company attributes.
+  1. Implement the generation service using the provider-agnostic `generate_text` method.
+  2. Apply structured XML-based prompting to guide the model's role and tone.
+  3. Persist drafts in the `cover_letter` table.
+- **Verification**: Confirm the letter mentions specific job and company attributes correctly.
 - **Definition of Done**: The system generates tailored cover letter recommendations.
 
-#### **Milestone: Application recommendations**
+###### **Milestone: Application recommendations**
 
-- **Objective**: Provide strategic advice for the application process.
-- **Official Documentation**: [OpenAI: Thinking and Reasoning](https://platform.openai.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#thinking-and-reasoning).
+- **Objective**: Provide strategic advice for the application process using model reasoning.
+- **Official Documentation**: [Gemini API: Thinking](https://ai.google.dev/gemini-api/docs/thinking).
 - **Completion Criteria**: User receives actionable tips for specific job applications.
 - **Execution Tasks**:
-  1. Implement prompts that evaluate job-to-user fit for interview prep.
-- **Verification**: Review tips for consistency with career profile interests.
-- **Definition of Done**: The system assists user-controlled preparation.
-
-#### **Milestone: Resume version management**
-
-- **Objective**: Track and store multiple versions of the user's CV.
-- **Official Documentation**: [SQLModel: Connected Tables](https://sqlmodel.tiangolo.com/tutorial/connect/create-connected-tables/).
-- **Completion Criteria**: User can manage and select from multiple CV versions.
-- **Execution Tasks**:
-  1. Implement the `CV` table and its relationship to the `User Profile`.
-  2. Create endpoints for uploading and listing CV versions.
-- **Verification**: Upload a CV and verify its association with a career profile.
-- **Definition of Done**: CVs are versioned and persist across sessions.
+  1. Implement prompts that utilize model reasoning to evaluate job-to-user fit for interview prep.
+- **Verification**: Review tips for consistency with career profile interests and collected job data.
+- **Definition of Done**: The system assists user-controlled preparation through the AI layer.
 
 ---
 
@@ -456,13 +478,17 @@ It does not replace:
 - **Verification**: perform a test restoration from a backup.
 - **Definition of Done**: The project has a sustainable data recovery workflow.
 
-#### **Milestone: Operational documentation**
+###### **Milestone: Operational documentation**
 
 - **Objective**: Produce maintenance and deployment guides.
-- **Official Documentation**: [Claude: Best practices (CLAUDE.md)](https://code.claude.com/docs/en/best-practices#write-an-effective-claude-md).
+- **Official Documentation**: [AI Development Playbook](AI_DEVELOPMENT_PLAYBOOK.md).
 - **Completion Criteria**: Documentation covers all operational procedures.
 - **Execution Tasks**:
   1. Document environment setup and deployment steps.
   2. Create a "Known Gotchas" section for future maintainers.
 - **Verification**: Verify documentation accuracy by following the steps from scratch.
 - **Definition of Done**: The project maintains clear, up-to-date operational standards.
+
+```
+
+```

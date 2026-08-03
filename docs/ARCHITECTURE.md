@@ -21,6 +21,7 @@ The architecture is designed to be:
 - Extensible
 - Testable
 - AI-assisted
+- Provider-independent
 - Easy to evolve
 
 Every architectural component should own a single responsibility.
@@ -39,7 +40,7 @@ As the project grows, the application will be organized into dedicated modules f
 - Schemas
 - Services
 - Dependencies
-- Configuration
+- Configuration (Registry defined in configuration.md)
 
 The `app/main.py` module serves as the application entry point.
 
@@ -82,11 +83,17 @@ The AI Career Agent follows a modular processing pipeline.
                      ▼
             Recommendations
                      │
+                     ▼
+             AI Abstraction
           ┌──────────┴──────────┐
           ▼                     ▼
-    CV Tailoring      Cover Letter Generation
+   Job Intelligence      AI Assistance
           │                     │
-          └──────────┬──────────┘
+          ├──────────┬──────────┤
+          ▼          ▼          ▼
+Recommendation   CV Tailoring   Cover Letter
+ Explanation
+                     │
                      ▼
                User Review
 ```
@@ -135,22 +142,45 @@ Responsibilities include:
 - Job filtering
 - Relevance scoring
 - Recommendation generation
+- AI-powered recommendation explanations
 
 This layer determines which opportunities best match the user's preferences.
+
+The Job Intelligence layer communicates with AI capabilities through the AI Abstraction layer rather than interacting directly with external AI providers.
+
+---
+
+## AI Abstraction
+
+Responsible for providing a provider-independent interface between the application's domain logic and external AI services.
+
+Responsibilities include:
+
+- Providing a unified interface for AI capabilities.
+- Isolating provider-specific implementations.
+- Supporting integration with multiple AI providers.
+- Enabling provider replacement with minimal architectural impact.
+
+This layer encapsulates external AI providers and prevents vendor-specific concerns from leaking into business logic.
+
+The architecture supports a primary AI provider together with optional fallback providers.
+
+Provider selection, failover logic, and implementation details belong outside the business domain.
 
 ---
 
 ## AI Assistance
 
-Responsible for improving application quality.
+Responsible for improving application quality and supporting the job application process.
 
 Capabilities include:
 
 - CV tailoring
 - Cover letter generation
-- Recommendation explanations (future)
 
-This layer assists the user but never submits applications automatically.
+This layer consumes AI capabilities through the AI Abstraction layer.
+
+It assists the user but never submits applications automatically.
 
 ---
 
@@ -179,6 +209,8 @@ Rank
     ↓
 Recommend
     ↓
+AI Abstraction
+    ↓
 Assist
     ↓
 User Decision
@@ -206,6 +238,8 @@ Modules should communicate through well-defined interfaces.
 
 Avoid unnecessary dependencies between unrelated components.
 
+Architectural components should depend on abstractions rather than concrete external providers whenever practical.
+
 ---
 
 ## High Cohesion
@@ -226,7 +260,15 @@ FastAPI routers should group related endpoints while business logic remains outs
 
 ## Extensibility
 
-New job sources, recommendation strategies, and AI capabilities should be added without requiring major architectural changes.
+New job sources, recommendation strategies, and AI providers should be added without requiring major architectural changes.
+
+---
+
+## Provider Independence
+
+Business logic should remain independent of external AI vendors.
+
+The architecture should allow AI providers to be introduced, replaced, or removed with minimal impact on the remainder of the application.
 
 ---
 
@@ -235,6 +277,8 @@ New job sources, recommendation strategies, and AI capabilities should be added 
 Architectural components should be independently testable.
 
 Business logic should remain separate from framework-specific code whenever practical.
+
+External AI services should be replaceable with test doubles or mock implementations during automated testing.
 
 ---
 
@@ -250,6 +294,7 @@ It does **not** define:
 - Coding standards
 - Git workflow
 - Technology selection
+- Provider-specific implementation details
 
 Those responsibilities belong to their respective documents.
 
@@ -264,4 +309,5 @@ Significant architectural changes should:
 1. Follow official framework guidance where applicable.
 2. Preserve modularity and separation of responsibilities.
 3. Minimize coupling between components.
-4. Be reflected in this document before implementation when they materially change the system architecture.
+4. Preserve provider independence for external integrations where practical.
+5. Be reflected in this document before implementation when they materially change the system architecture.

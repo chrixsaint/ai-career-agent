@@ -52,7 +52,7 @@ The repository is organized as follows.
 The repository root contains configuration files required by official tools, including:
 
 - README.md
-- CLAUDE.md
+- AI_ENGINEERING_GUIDE.md
 - pyproject.toml
 - uv.lock
 - .gitignore
@@ -138,7 +138,6 @@ The following conventions are defined by this repository.
 ## Documentation
 
 Project-owned documentation belongs inside `docs/`.
-
 Examples include:
 
 - Project Vision
@@ -151,9 +150,12 @@ Examples include:
 - Git Workflow
 - Technology Stack
 - Database Design
-- AI Playbook
+- Database Architecture
+- Database Schema
+- AI Development Playbook
 - AI Collaboration
 
+```
 ---
 
 ## Knowledge Base
@@ -179,7 +181,7 @@ Project-specific AI engineering documentation belongs in `docs/`.
 
 Examples include:
 
-- AI_PLAYBOOK.md
+- AI_DEVELOPMENT_PLAYBOOK.md
 - AI_COLLABORATION.md
 
 Claude Code operational files belong only in their official locations (`CLAUDE.md` and `.claude/`).
@@ -210,25 +212,29 @@ Inactive documentation increases maintenance cost and should be avoided.
 
 ---
 
-# Document Taxonomy
+### Document Taxonomy
 
 Every document owns exactly one responsibility.
 
-| Document            | Responsibility                        |
-| ------------------- | ------------------------------------- |
-| README              | Repository introduction               |
-| PROJECT_VISION      | Why the project exists                |
-| REQUIREMENTS        | What the system must accomplish       |
-| ROADMAP             | Planned implementation                |
-| PROJECT_STATUS      | Current implementation progress       |
-| ARCHITECTURE        | Technical design                      |
-| REPOSITORY_STANDARD | Repository governance                 |
-| CODING_STANDARDS    | Code quality and implementation rules |
-| GIT_WORKFLOW        | Version control workflow              |
-| AI_PLAYBOOK         | AI orchestration strategy             |
-| AI_COLLABORATION    | Human-AI collaboration model          |
-| technology-stack    | Technologies used by the project      |
-| database-design     | Database design                       |
+| Document                | Responsibility                                |
+| ----------------------- | --------------------------------------------- |
+| README                  | Repository introduction                       |
+| PROJECT_VISION          | Why the project exists                        |
+| REQUIREMENTS            | What the system must accomplish               |
+| ROADMAP                 | Planned implementation phases                 |
+| PROJECT_STATUS          | Current implementation progress               |
+| ARCHITECTURE            | Technical design and system layering          |
+| REPOSITORY_STANDARD     | Repository governance and organization        |
+| CODING_STANDARDS        | Code quality and implementation rules         |
+| GIT_WORKFLOW            | Version control workflow                      |
+| AI_ENGINEERING_GUIDE    | Core engineering standards for AI assistants  |
+| AI_DEVELOPMENT_PLAYBOOK | AI tool orchestration and dev workflow        |
+| AI_COLLABORATION        | Human-AI collaboration model                  |
+| technology-stack        | Technologies and vendor selection rationale   |
+| database-design         | Conceptual data model only                    |
+| database-architecture   | Persistence-layer technical standards         |
+| configuration           | Authoritative registry and standards for environment variables |
+| database-schema         | Authoritative physical database specification |
 
 Documents should reference one another rather than duplicate information.
 
@@ -282,24 +288,35 @@ Documentation and knowledge directories may use `kebab-case` where appropriate.
 
 ---
 
-# Ownership Boundaries
+### Ownership Boundaries
 
 Each document owns a single responsibility.
 
-| Document               | Responsibility                                 |
-| ---------------------- | ---------------------------------------------- |
-| CLAUDE.md              | Persistent Claude Code repository instructions |
-| AI_PLAYBOOK.md         | AI tool orchestration                          |
-| AI_COLLABORATION.md    | Human-AI collaboration                         |
-| REPOSITORY_STANDARD.md | Repository governance                          |
-| ARCHITECTURE.md        | Technical architecture                         |
-| CODING_STANDARDS.md    | Code quality                                   |
-| GIT_WORKFLOW.md        | Version control                                |
-| PROJECT_STATUS.md      | Current progress                               |
-| ROADMAP.md             | Planned milestones                             |
-| REQUIREMENTS.md        | Functional and non-functional requirements     |
+| Document                   | Responsibility                             |
+| -------------------------- | ------------------------------------------ |
+| AI_ENGINEERING_GUIDE.md    | Persistent AI Code repository instructions |
+| AI_DEVELOPMENT_PLAYBOOK.md | AI tool orchestration                      |
+| AI_COLLABORATION.md        | Human-AI collaboration                     |
+| REPOSITORY_STANDARD.md     | Repository governance                      |
+| ARCHITECTURE.md            | Technical architecture and system layering |
+| CODING_STANDARDS.md        | Code quality                               |
+| GIT_WORKFLOW.md            | Version control                            |
+| PROJECT_STATUS.md          | Current progress                           |
+| ROADMAP.md                 | Planned milestones                         |
+| REQUIREMENTS.md            | Functional and non-functional requirements |
+| DATABASE_DESIGN.md         | Conceptual data model only                 |
+| DATABASE_ARCHITECTURE.md   | Persistence strategy (UUID, types, naming) |
+| DATABASE_SCHEMA.md         | Physical table and column specifications   |
 
 Documents should reference one another rather than duplicate information.
+
+| Location | Responsibility |
+| ------ | ------ |
+| app/ | Application source code. |
+| migrations/ | Alembic migration environment and version history. |
+| tests/ | Unit, integration, and end-to-end tests. |
+| docs/ | Project documentation and repository governance. |
+```
 
 ---
 
@@ -379,3 +396,15 @@ Large repository restructuring should follow this workflow:
 ---
 
 **Last Updated:** 2026-08-01
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```

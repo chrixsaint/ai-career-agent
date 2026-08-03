@@ -26,14 +26,17 @@ Whenever practical, prefer open-source technologies.
 
 ---
 
-# Backend
+### Backend
 
-| Technology | Purpose                           | Status |
-| ---------- | --------------------------------- | ------ |
-| Python     | Primary programming language      | In Use |
-| FastAPI    | Web API framework                 | In Use |
-| Pydantic   | Data validation and serialization | In Use |
-| Uvicorn    | ASGI application server           | In Use |
+| Technology        | Purpose                           | Status |
+| ----------------- | --------------------------------- | ------ |
+| Python            | Primary programming language      | In Use |
+| FastAPI           | Web API framework                 | In Use |
+| Pydantic          | Data validation and serialization | In Use |
+| pydantic-settings | Type-safe environment management  | In Use |
+| Uvicorn           | ASGI application server           | In Use |
+
+```
 
 ---
 
@@ -47,11 +50,20 @@ Whenever practical, prefer open-source technologies.
 
 ---
 
-# AI
+# Artificial Intelligence
 
-| Technology | Purpose                                  | Status  |
-| ---------- | ---------------------------------------- | ------- |
-| OpenAI API | CV tailoring and cover letter generation | Planned |
+| Technology        | Purpose                                                             | Status  |
+| ----------------- | ------------------------------------------------------------------- | ------- |
+| Google Gemini API | Primary AI provider for job intelligence and application assistance | Planned |
+| Groq              | Fallback AI provider for resilient AI inference                     | Planned |
+
+## Technology Rationale
+
+Google Gemini API was selected as the primary AI provider because it offers a permanent free developer tier, a large context window suitable for analysing CVs and job descriptions, and structured output capabilities that support the project's Job Intelligence and AI Assistance features.
+
+Groq was selected as the fallback AI provider because it provides high-performance, low-latency inference through an OpenAI-compatible API, improving resilience while allowing the application to continue operating if the primary provider is unavailable.
+
+Additional AI providers may be introduced in the future through the AI abstraction defined in `ARCHITECTURE.md`.
 
 ---
 
@@ -102,6 +114,7 @@ Future phases of the project may introduce additional technologies.
 
 Potential additions include:
 
+- Ollama
 - Docker
 - GitHub Actions
 - Playwright
@@ -121,6 +134,7 @@ It does **not** define:
 - system architecture
 - setup procedures
 - deployment procedures
+- provider implementation details
 
 Those responsibilities belong to their respective documents.
 
@@ -136,3 +150,4 @@ The machine-readable source of truth for project dependencies remains:
 - `uv.lock`
 
 Whenever these files and this document differ, the project configuration files take precedence.
+```
