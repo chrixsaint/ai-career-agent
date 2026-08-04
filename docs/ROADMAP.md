@@ -48,14 +48,17 @@ Establish the project's engineering foundation.
 
 Collect job opportunities from multiple sources.
 
-### Milestones
-
-- Job source abstraction
-- Public API integration
-- Company career page collection
-- Job normalization
-- Duplicate detection
-- Data persistence
+### Phase 2 – Job Collection
+#### Goal
+Collect job opportunities from multiple sources.
+##### Milestones
+*   Job source abstraction ✅
+*   Job normalization ⏳ (Define Pydantic data contracts)
+*   Public API integration ⏳
+*   Company career page collection ⏳
+*   Duplicate detection ⏳
+*   Data persistence ⏳
+```
 
 ---
 

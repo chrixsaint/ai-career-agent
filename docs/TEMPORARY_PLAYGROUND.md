@@ -48,167 +48,59 @@ Those responsibilities belong to the official project documentation.
 
 # Current Implementation Task
 
+---
+
 ## File
 
-`app/services/collection/base.py`
-
----
+`app/services/collection/models.py`
 
 ## Objective
 
-Design the provider-independent abstract base class for all job collectors.
+Implement the provider-independent Pydantic models that define the output contract of the Job Collection subsystem.
 
-This class defines the contract that every job source implementation must follow.
+These models represent the boundary between external job providers and the internal processing pipeline.
 
-It establishes the foundation of the Job Collection subsystem.
-
----
+Every collector must normalize provider-specific responses into these models before any persistence, duplicate detection, or AI processing occurs.
 
 ## Responsibilities
 
-The BaseCollector shall:
+The models shall:
 
-- Define the common collector interface.
-- Enforce asynchronous collection.
-- Return standardized `RawJobCapture` models.
-- Remain completely provider-independent.
-- Provide shared logging infrastructure.
-- Define the lifecycle expected from every collector.
+- Define the subsystem output contract.
+- Be provider independent.
+- Use Pydantic v2.
+- Support every planned job provider.
+- Preserve information required for downstream processing.
+- Remain independent from SQLModel entities.
+- Remain independent from persistence.
 
----
+## Non-Responsibilities
 
-## Out of Scope
+The models shall not:
 
-The BaseCollector shall **NOT**:
-
-- Call external APIs.
-- Parse JSON.
-- Parse XML.
-- Parse HTML.
-- Perform retries.
-- Implement rate limiting.
-- Handle provider authentication.
 - Persist data.
-- Score jobs.
-- Rank jobs.
-- Perform AI reasoning.
+- Perform business logic.
+- Communicate with providers.
+- Calculate AI scores.
+- Detect duplicates.
+- Rank opportunities.
 
-These responsibilities belong to protocol collectors or downstream services.
+## Open Design Questions
 
----
+Before implementation the following architectural decisions must be finalized:
 
-## Public Interface
+1. Which Pydantic models should exist?
 
-### Properties
+2. Should RawJobCapture be immutable?
 
-- `source_name`
-- `source_type`
+3. Which fields are mandatory?
 
-### Required Methods
+4. Which fields are optional?
 
-- `fetch()`
+5. Should provider metadata be separated from normalized job data?
 
-### Optional Shared Infrastructure
+6. Should enums be introduced?
 
-- logger
+7. How should unknown provider fields be handled?
 
-The implementation should expose the smallest possible public interface while remaining extensible.
-
----
-
-## Dependencies
-
-The BaseCollector may depend on:
-
-- abc
-- logging
-- typing
-- RawJobCapture
-- collection.constants
-- collection.exceptions
-
-The BaseCollector shall **NOT** depend on:
-
-- httpx
-- BeautifulSoup
-- selectolax
-- lxml
-- aiolimiter
-- vendor SDKs
-- provider-specific modules
-
----
-
-## Collector Lifecycle
-
-Every collector should follow the same lifecycle.
-
-```text
-fetch()
-    │
-    ▼
-Retrieve external data
-    │
-    ▼
-Validate response
-    │
-    ▼
-Normalize
-    │
-    ▼
-Return list[RawJobCapture]
-```
-
----
-
-## Expected Inheritance
-
-```text
-BaseCollector
-│
-├── APICollector
-│      │
-│      └── ATSCollector
-│
-├── FeedCollector
-│
-└── HTMLCollector
-```
-
-Concrete providers inherit from the protocol collectors.
-
-Examples:
-
-- JoobleCollector
-- EuraxessCollector
-- GreenhouseCollector
-- LeverCollector
-- AdzunaCollector
-- RemoteOKCollector
-
----
-
-## Definition of Done
-
-The implementation is complete when:
-
-- Every collector can inherit from BaseCollector.
-- The class contains no provider-specific logic.
-- The interface is stable.
-- The abstraction is protocol-independent.
-- The implementation aligns with the Job Collection Architecture.
-- The design satisfies the project's modularity and provider-independence requirements.
-
----
-
-# Notes
-
-This file is temporary.
-
-Once `BaseCollector` has been implemented, verified, committed, and pushed:
-
-1. Remove this specification.
-2. Replace it with the next implementation task.
-3. Repeat the same engineering workflow for the next file.
-
-This document should always contain **exactly one active implementation specification**.
+8. Which fields are required to satisfy DATABASE_SCHEMA.md while remaining provider-independent?

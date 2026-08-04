@@ -317,6 +317,29 @@ Documents should reference one another rather than duplicate information.
 | tests/ | Unit, integration, and end-to-end tests. |
 | docs/ | Project documentation and repository governance. |
 ```
+## Repository Truth Policy
+
+The repository distinguishes between planning, approval, implementation, and release.
+
+Every repository artifact must accurately reflect its current lifecycle stage.
+
+### Lifecycle States
+
+| State | Meaning |
+|--------|---------|
+| Planned | The work has been identified but has not yet been designed. |
+| Approved | The design or specification has been reviewed and accepted but has not been implemented. |
+| Implemented | Production code exists in the repository but has not necessarily been declared stable. |
+| Frozen | The implementation or specification is considered authoritative and should only change to correct genuine engineering errors. |
+| Released | The implementation has been completed, verified, merged, and is part of the official project history. |
+
+### Repository Rules
+
+- Approved architecture does **not** imply implemented code.
+- Frozen specifications do **not** imply completed implementation.
+- `PROJECT_STATUS.md` records only implemented repository state.
+- `IMPLEMENTATION_GUIDE.md` grows alongside completed implementation packages and must not document future implementation as if it already exists.
+- Planning documents may describe future work; operational documents must describe current repository truth.
 
 ---
 

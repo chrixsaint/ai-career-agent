@@ -10,6 +10,25 @@ Unlike `.claude/skills/`, this document is designed for human reference and can 
 
 ---
 
+### prompt to check everything about the last task before progressing
+
+Based on the finalized repository documentation and implementation guides, review the current project state and determine the exact next implementation task.
+
+Do not redesign previous work.
+
+Determine:
+
+1. Which file should be implemented next.
+2. Why this file must come next.
+3. Which documents define its implementation.
+4. Any prerequisite checks before implementation.
+5. The expected definition of done.
+6. Whether any existing implementation should be adjusted before continuing.
+
+If the next task is another architectural contract, explain why it precedes concrete provider implementations.
+
+Use only the repository documentation and current implementation state.
+
 ## Scope
 
 This library contains prompts for:

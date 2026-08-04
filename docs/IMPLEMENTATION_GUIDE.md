@@ -83,7 +83,8 @@ It does not replace:
 - **Verification**: Review documentation for adherence to the **Single Responsibility Principle**.
 - **Definition of Done**: Documentation provides a stable, authoritative source of truth for the project.
 
-```
+``
+
 #### **Milestone: Initial testing framework**
 
 - **Objective**: Establish an asynchronous testing baseline "from day 0".
@@ -109,18 +110,20 @@ It does not replace:
 
 ---
 
-#####  **Phase 2 – Job Collection**
+##### **Phase 2 – Job Collection**
+
 Prerequisite: Review **DATABASE_ARCHITECTURE.md** and **DATABASE_SCHEMA.md** before implementing SQLModel models.
 
-######  **Milestone: Job source abstraction**
-*   **Objective**: Implement a Strategy pattern for various job discovery methods.
-*   **Official Documentation**: [Python: abc — Abstract Base Classes](https://docs.python.org/3/library/abc.html).
-*   **Completion Criteria**: A unified interface exists for all job collectors.
-*   **Execution Tasks**:
-    1. Define the `BaseCollector` ABC in `app/services/collection/base.py`.
-    2. Implement common normalization methods.
-*   **Verification**: Create a `MockCollector` and verify it returns standardized job data.
-*   **Definition of Done**: Collectors are modular and adhere to the Single Responsibility Principle.
+###### **Milestone: Job source abstraction**
+
+- **Objective**: Implement a Strategy pattern for various job discovery methods.
+- **Official Documentation**: [Python: abc — Abstract Base Classes](https://docs.python.org/3/library/abc.html).
+- **Completion Criteria**: A unified interface exists for all job collectors.
+- **Execution Tasks**:
+  1. Define the `BaseCollector` ABC in `app/services/collection/base.py`.
+  2. Implement common normalization methods.
+- **Verification**: Create a `MockCollector` and verify it returns standardized job data.
+- **Definition of Done**: Collectors are modular and adhere to the Single Responsibility Principle.
 
 #### **Milestone: Public API integration**
 
@@ -166,16 +169,18 @@ Prerequisite: Review **DATABASE_ARCHITECTURE.md** and **DATABASE_SCHEMA.md** bef
 - **Verification**: Process a dataset containing known duplicates and verify they are filtered.
 - **Definition of Done**: The processing pipeline maintains data integrity by removing duplicates.
 
-######  **Milestone: Data persistence**
-*   **Objective**: Implement the SQLModel/PostgreSQL layer for long-term storage.
-*   **Official Documentation**: [SQLModel: Tutorial](https://sqlmodel.tiangolo.com/tutorial/); [Alembic: Tutorial](https://alembic.sqlalchemy.org/en/latest/tutorial.html).
-*   **Completion Criteria**: Database tables match the physical schema and are version-managed.
-*   **Execution Tasks**:
-    1. Define `Job`, `Company`, and `JobSource` models in `app/models/` following **DATABASE_SCHEMA.md**.
-    2. Initialize the migration environment in the `migrations/` directory.
-    3. Generate the initial static, reversible migration.
-*   **Verification**: Run `alembic upgrade head` and verify the physical schema in PostgreSQL.
-*   **Definition of Done**: Data is persistable, versioned, and managed by Alembic.
+###### **Milestone: Data persistence**
+
+- **Objective**: Implement the SQLModel/PostgreSQL layer for long-term storage.
+- **Official Documentation**: [SQLModel: Tutorial](https://sqlmodel.tiangolo.com/tutorial/); [Alembic: Tutorial](https://alembic.sqlalchemy.org/en/latest/tutorial.html).
+- **Completion Criteria**: Database tables match the physical schema and are version-managed.
+- **Execution Tasks**:
+  1. Define `Job`, `Company`, and `JobSource` models in `app/models/` following **DATABASE_SCHEMA.md**.
+  2. Initialize the migration environment in the `migrations/` directory.
+  3. Generate the initial static, reversible migration.
+- **Verification**: Run `alembic upgrade head` and verify the physical schema in PostgreSQL.
+- **Definition of Done**: Data is persistable, versioned, and managed by Alembic.
+
 ```
 
 ---
@@ -488,6 +493,8 @@ Prerequisite: Review **DATABASE_ARCHITECTURE.md** and **DATABASE_SCHEMA.md** bef
   2. Create a "Known Gotchas" section for future maintainers.
 - **Verification**: Verify documentation accuracy by following the steps from scratch.
 - **Definition of Done**: The project maintains clear, up-to-date operational standards.
+
+```
 
 ```
 
