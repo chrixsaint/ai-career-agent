@@ -289,6 +289,10 @@ Git Documentation
 git add .
 ```
 
+uv run ruff check . --fix
+
+uv run ruff format .
+
 ## To format file after writing
 
 uv run ruff format tests/conftest.py
