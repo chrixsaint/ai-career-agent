@@ -153,7 +153,10 @@ Examples include:
 - Database Architecture
 - Database Schema
 - AI Development Playbook
-- AI Collaboration
+- * Engineering Specifications (`docs/specifications/`)
+  * Purpose: Store frozen engineering specifications that govern implementation artifacts.
+  * Scope: Prompt specifications, workflow specifications, API specifications, and other implementation specifications.
+  * Responsibility: Documentation governs implementation. Specifications define the authoritative design that physical repository artifacts must implement.
 
 ```
 ---

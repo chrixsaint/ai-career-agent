@@ -1,6 +1,6 @@
 # Repository Instructions: AI Career Agent
 
-> **Status:** Frozen
+> **Status:** Status: Frozen
 >
 > **Lifecycle:** Repository Instruction
 >
@@ -218,13 +218,9 @@ This file complements repository governance documents and must not duplicate the
 
 ## VERIFIED FACT
 
-Repository instructions provide permanent repository context.
+Reusable implementation logic is located in **.github/prompts/**.
 
-Reusable implementation logic belongs in:
-
-```
-.github/prompts/
-```
+Before modifying or generating a permanent prompt, consult its governing engineering specification in **docs/specifications/prompts/** and ensure the implementation remains synchronized with the approved specification.
 
 Task-specific prompts are temporary and are governed by the Prompt Governance policy defined in `AI_DEVELOPMENT_WORKFLOW.md`.
 

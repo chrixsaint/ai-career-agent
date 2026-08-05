@@ -273,7 +273,7 @@ AI
 
 # Revision Policy
 
-The prompt library should evolve alongside the project.
+Prompt implementations are generated from frozen prompt specifications.
 
 Only retain prompts that:
 

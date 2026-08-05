@@ -317,9 +317,7 @@ Repository Instructions shall remain synchronized with repository governance.
 
 ## VERIFIED FACT
 
-Reusable repository intelligence shall be maintained inside:
-
-.github/prompts/
+Reusable repository intelligence shall be maintained inside **.github/prompts/**. Physical prompt implementations must be generated from and remain synchronized with frozen specifications located in **docs/specifications/prompts/**.
 
 Prompt categories include:
 

@@ -1,6 +1,9 @@
+````markdown
 # Project Status
 
 > **Purpose:** This document records the current implementation status of the AI Career Agent. It provides a real-time snapshot of the project's current progress.
+
+**Last updated:** 2026-08-05
 
 The project roadmap is defined in `ROADMAP.md`.
 
@@ -55,10 +58,12 @@ The next implementation package will begin only after all required AI engineerin
 
 - COPILOT_CONFIGURATION.md ✅ Frozen
 - .github/copilot-instructions.md ✅ Frozen
+- PROMPT_LIBRARY.md ✅ Frozen
+- docs/specifications/prompts/implementation-plan.prompt.specification.md ✅ Frozen
 
 ### Remaining
 
-- Prompt Library (.github/prompts/) ⏳
+- .github/prompts/implementation-plan.prompt.md ⏳
 - Agent Configuration ⏳
 
 ---
@@ -104,42 +109,32 @@ The next implementation package will begin only after all required AI engineerin
 - AI_DEVELOPMENT_WORKFLOW.md
 - COPILOT_CONFIGURATION.md
 - .github/copilot-instructions.md
+- PROMPT_LIBRARY.md
+- docs/specifications/prompts/implementation-plan.prompt.specification.md
 
 ---
 
-## Current Next Deliverable
+## Next Deliverable
 
-Create, verify, and freeze the GitHub Copilot Prompt Library:
+Create, verify, and freeze the physical GitHub Copilot prompt implementation:
 
 ```text
-.github/prompts/
+.github/prompts/implementation-plan.prompt.md
+````
+
+This implementation must be generated from the frozen engineering specification located at:
+
+```text
+docs/specifications/prompts/implementation-plan.prompt.specification.md
 ```
 
-The Prompt Library will contain permanent, version-controlled prompts that implement the Prompt Governance policy defined in `AI_DEVELOPMENT_WORKFLOW.md`.
+The physical prompt will implement the planning stage of the AI Development Workflow and become the first executable, reusable GitHub Copilot prompt governed by the repository's specification layer.
 
-These prompts will provide reusable engineering workflows for recurring development activities such as implementation planning, code review, testing, documentation synchronization, architecture verification, and repository maintenance.
+**Status:** PLANNED
 
-Completion of the Prompt Library is required before final Agent Configuration and resumption of Phase 2 implementation.
+**Lifecycle:** Planned → Approved → Implemented → Frozen → Released
 
----
-
-## Next Planned Artifact
-
-```
-.github/prompts/
-```
-
-Status: **PLANNED**
-
-Lifecycle:
-
-- Planned
-- Approved
-- Implemented
-- Frozen
-- Released
-
-(Current Stage: **Planned**)
+**Current stage:** Planned
 
 ---
 
@@ -172,3 +167,6 @@ Frozen specifications do not imply completed code.
 Planning documents may describe future work.
 
 Operational documents record only repository truth.
+
+```
+```

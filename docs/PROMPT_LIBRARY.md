@@ -33,7 +33,8 @@ Its purpose is to standardize recurring engineering workflows so GitHub Copilot 
 
 ## VERIFIED FACT
 
-This specification governs all **`.prompt.md`** files located in the **`.github/prompts/`** directory, which are used by GitHub Copilot Chat and Agent Mode.
+This specification governs all **.prompt.md** files located in the **.github/prompts/** directory and the corresponding prompt engineering specifications located in **docs/specifications/prompts/**.
+```
 
 It does not govern:
 
@@ -209,14 +210,8 @@ Prompt files are versioned alongside the repository code they support.
 
 ## VERIFIED FACT
 
-All permanent prompt files must reside in:
+All permanent prompt files reside in **.github/prompts/** to allow GitHub Copilot to discover them automatically. Their governing engineering specifications reside in **docs/specifications/prompts/**.
 
-```text
-.github/prompts/
-
-to allow GitHub Copilot to discover them automatically.
-
----
 
 ## 17. Permanent Prompts
 ## VERIFIED FACT
@@ -307,4 +302,4 @@ The Prompt Files documentation already present in the knowledge base provides th
 
 1. Should the repository standardize a common frontmatter template for all permanent prompt files, or allow each prompt to define only the metadata it requires?
 2. Should future subsystem-specific prompts (for example, database, API, or security reviews) be governed within this document or introduced incrementally as new implementation packages become active under the Repository Truth Policy?
-```
+``
