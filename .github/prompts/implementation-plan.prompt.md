@@ -1,6 +1,6 @@
 ---
-agent: 'agent'
-description: 'Generate a standardized Step 5 Implementation Plan'
+agent: "agent"
+description: "Generate a standardized Step 5 Implementation Plan"
 ---
 
 # Step 5: Implementation Planning
