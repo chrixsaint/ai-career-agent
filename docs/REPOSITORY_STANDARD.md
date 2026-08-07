@@ -419,18 +419,63 @@ Large repository restructuring should follow this workflow:
 7. Verify repository consistency after each batch.
 8. Commit the completed batch before continuing.
 
+## Repository Freeze Rule
+
+Repository Freeze applies only after a Repository Freeze Audit has completed Engineering Review and NotebookLM Evidence Audit.
+
+The objective of the Repository Freeze is to update repository governance using only verified repository truth.
+
+During a Repository Freeze, every finding shall be classified into exactly one of the following categories.
+
+### Repository Truth
+
+Repository Truth consists of findings that are explicitly supported by uploaded repository governance and successfully verified during the Evidence Audit.
+
+Repository Truth findings may be implemented immediately.
+
+No additional Human Developer approval is required beyond the Repository Freeze itself.
+
+---
+
+### Engineering Proposal
+
+Engineering Proposals represent reasonable architectural or organizational improvements that are not mandated by existing repository governance.
+
+Engineering Proposals shall never be implemented automatically.
+
+They require explicit Human Developer approval before becoming repository truth.
+
+Until approved, they remain proposals.
+
+---
+
+### Open Question
+
+Open Questions represent findings that cannot be verified from uploaded repository evidence.
+
+Open Questions shall not be implemented.
+
+They remain unresolved until sufficient repository evidence exists or the Human Developer explicitly resolves them.
+
+---
+
+### Repository Freeze Decision Matrix
+
+| Classification | Automatically Implement | Human Approval Required | Freeze Status |
+|----------------|------------------------|-------------------------|---------------|
+| Repository Truth | Yes | No | Frozen |
+| Engineering Proposal | No | Yes | Pending Decision |
+| Open Question | No | Yes (after verification) | Deferred |
+
+---
+
+### Repository Freeze Principle
+
+A Repository Freeze updates repository governance using verified repository truth.
+
+Repository Freeze shall never implement Engineering Proposals or Open Questions solely because they appear reasonable.
+
+Only Repository Truth may automatically modify repository governance.
 ---
 
 **Last Updated:** 2026-08-01
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```
