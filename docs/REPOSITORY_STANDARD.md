@@ -427,6 +427,15 @@ The objective of the Repository Freeze is to update repository governance using 
 
 During a Repository Freeze, every finding shall be classified into exactly one of the following categories.
 
+#### Governance Interpretation Resolution Rule
+
+If an Engineering Review and a NotebookLM Evidence Audit disagree on the interpretation of a frozen governance document:
+
+1. Neither interpretation shall be accepted automatically.
+2. The disputed statement shall be verified directly against the cited frozen governance.
+3. The governing text shall determine the resolution.
+4. If the governance does not explicitly resolve the dispute, the issue shall remain an Open Question until sufficient repository evidence exists.
+
 ### Repository Truth
 
 Repository Truth consists of findings that are explicitly supported by uploaded repository governance and successfully verified during the Evidence Audit.
